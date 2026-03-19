@@ -1,0 +1,4544 @@
+|singleCycleProc
+GClock => Register_32bit:PC_reg.Clk
+GClock => InstructionMemory:inst_mem.clock
+GClock => regfile:reg_file.clock
+GClock => DataMemory:data_mem.clock
+GReset => Register_32bit:PC_reg.reset
+GReset => regfile:reg_file.reset
+ValueSelect[0] => Mux0.IN5
+ValueSelect[0] => Mux1.IN2
+ValueSelect[0] => Mux2.IN2
+ValueSelect[0] => Mux3.IN2
+ValueSelect[0] => Mux4.IN2
+ValueSelect[0] => Mux5.IN2
+ValueSelect[0] => Mux6.IN2
+ValueSelect[0] => Mux7.IN2
+ValueSelect[1] => Mux0.IN4
+ValueSelect[1] => Mux1.IN1
+ValueSelect[1] => Mux2.IN1
+ValueSelect[1] => Mux3.IN1
+ValueSelect[1] => Mux4.IN1
+ValueSelect[1] => Mux5.IN1
+ValueSelect[1] => Mux6.IN1
+ValueSelect[1] => Mux7.IN1
+ValueSelect[2] => Mux0.IN3
+ValueSelect[2] => Mux1.IN0
+ValueSelect[2] => Mux2.IN0
+ValueSelect[2] => Mux3.IN0
+ValueSelect[2] => Mux4.IN0
+ValueSelect[2] => Mux5.IN0
+ValueSelect[2] => Mux6.IN0
+ValueSelect[2] => Mux7.IN0
+MuxOut[0] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
+MuxOut[1] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+MuxOut[2] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+MuxOut[3] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+MuxOut[4] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+MuxOut[5] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+MuxOut[6] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+MuxOut[7] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+InstructionOut[0] <= InstructionMemory:inst_mem.data[0]
+InstructionOut[1] <= InstructionMemory:inst_mem.data[1]
+InstructionOut[2] <= InstructionMemory:inst_mem.data[2]
+InstructionOut[3] <= InstructionMemory:inst_mem.data[3]
+InstructionOut[4] <= InstructionMemory:inst_mem.data[4]
+InstructionOut[5] <= InstructionMemory:inst_mem.data[5]
+InstructionOut[6] <= InstructionMemory:inst_mem.data[6]
+InstructionOut[7] <= InstructionMemory:inst_mem.data[7]
+InstructionOut[8] <= InstructionMemory:inst_mem.data[8]
+InstructionOut[9] <= InstructionMemory:inst_mem.data[9]
+InstructionOut[10] <= InstructionMemory:inst_mem.data[10]
+InstructionOut[11] <= InstructionMemory:inst_mem.data[11]
+InstructionOut[12] <= InstructionMemory:inst_mem.data[12]
+InstructionOut[13] <= InstructionMemory:inst_mem.data[13]
+InstructionOut[14] <= InstructionMemory:inst_mem.data[14]
+InstructionOut[15] <= InstructionMemory:inst_mem.data[15]
+InstructionOut[16] <= InstructionMemory:inst_mem.data[16]
+InstructionOut[17] <= InstructionMemory:inst_mem.data[17]
+InstructionOut[18] <= InstructionMemory:inst_mem.data[18]
+InstructionOut[19] <= InstructionMemory:inst_mem.data[19]
+InstructionOut[20] <= InstructionMemory:inst_mem.data[20]
+InstructionOut[21] <= InstructionMemory:inst_mem.data[21]
+InstructionOut[22] <= InstructionMemory:inst_mem.data[22]
+InstructionOut[23] <= InstructionMemory:inst_mem.data[23]
+InstructionOut[24] <= InstructionMemory:inst_mem.data[24]
+InstructionOut[25] <= InstructionMemory:inst_mem.data[25]
+InstructionOut[26] <= InstructionMemory:inst_mem.data[26]
+InstructionOut[27] <= InstructionMemory:inst_mem.data[27]
+InstructionOut[28] <= InstructionMemory:inst_mem.data[28]
+InstructionOut[29] <= InstructionMemory:inst_mem.data[29]
+InstructionOut[30] <= InstructionMemory:inst_mem.data[30]
+InstructionOut[31] <= InstructionMemory:inst_mem.data[31]
+BranchOut <= ControlPath:ctrl_unit.Branch
+ZeroOut <= Alu8bits:ALU_inst.Zero
+MemWriteOut <= ControlPath:ctrl_unit.MemWrite
+RegWriteOut <= ControlPath:ctrl_unit.RegWrite
+
+
+|singleCycleProc|Register_32bit:PC_reg
+Clk => enardFF_2:byteGen:0:dFF.i_clock
+Clk => enardFF_2:byteGen:1:dFF.i_clock
+Clk => enardFF_2:byteGen:2:dFF.i_clock
+Clk => enardFF_2:byteGen:3:dFF.i_clock
+Clk => enardFF_2:byteGen:4:dFF.i_clock
+Clk => enardFF_2:byteGen:5:dFF.i_clock
+Clk => enardFF_2:byteGen:6:dFF.i_clock
+Clk => enardFF_2:byteGen:7:dFF.i_clock
+Clk => enardFF_2:byteGen:8:dFF.i_clock
+Clk => enardFF_2:byteGen:9:dFF.i_clock
+Clk => enardFF_2:byteGen:10:dFF.i_clock
+Clk => enardFF_2:byteGen:11:dFF.i_clock
+Clk => enardFF_2:byteGen:12:dFF.i_clock
+Clk => enardFF_2:byteGen:13:dFF.i_clock
+Clk => enardFF_2:byteGen:14:dFF.i_clock
+Clk => enardFF_2:byteGen:15:dFF.i_clock
+Clk => enardFF_2:byteGen:16:dFF.i_clock
+Clk => enardFF_2:byteGen:17:dFF.i_clock
+Clk => enardFF_2:byteGen:18:dFF.i_clock
+Clk => enardFF_2:byteGen:19:dFF.i_clock
+Clk => enardFF_2:byteGen:20:dFF.i_clock
+Clk => enardFF_2:byteGen:21:dFF.i_clock
+Clk => enardFF_2:byteGen:22:dFF.i_clock
+Clk => enardFF_2:byteGen:23:dFF.i_clock
+Clk => enardFF_2:byteGen:24:dFF.i_clock
+Clk => enardFF_2:byteGen:25:dFF.i_clock
+Clk => enardFF_2:byteGen:26:dFF.i_clock
+Clk => enardFF_2:byteGen:27:dFF.i_clock
+Clk => enardFF_2:byteGen:28:dFF.i_clock
+Clk => enardFF_2:byteGen:29:dFF.i_clock
+Clk => enardFF_2:byteGen:30:dFF.i_clock
+Clk => enardFF_2:byteGen:31:dFF.i_clock
+enable => enardFF_2:byteGen:0:dFF.i_enable
+enable => enardFF_2:byteGen:1:dFF.i_enable
+enable => enardFF_2:byteGen:2:dFF.i_enable
+enable => enardFF_2:byteGen:3:dFF.i_enable
+enable => enardFF_2:byteGen:4:dFF.i_enable
+enable => enardFF_2:byteGen:5:dFF.i_enable
+enable => enardFF_2:byteGen:6:dFF.i_enable
+enable => enardFF_2:byteGen:7:dFF.i_enable
+enable => enardFF_2:byteGen:8:dFF.i_enable
+enable => enardFF_2:byteGen:9:dFF.i_enable
+enable => enardFF_2:byteGen:10:dFF.i_enable
+enable => enardFF_2:byteGen:11:dFF.i_enable
+enable => enardFF_2:byteGen:12:dFF.i_enable
+enable => enardFF_2:byteGen:13:dFF.i_enable
+enable => enardFF_2:byteGen:14:dFF.i_enable
+enable => enardFF_2:byteGen:15:dFF.i_enable
+enable => enardFF_2:byteGen:16:dFF.i_enable
+enable => enardFF_2:byteGen:17:dFF.i_enable
+enable => enardFF_2:byteGen:18:dFF.i_enable
+enable => enardFF_2:byteGen:19:dFF.i_enable
+enable => enardFF_2:byteGen:20:dFF.i_enable
+enable => enardFF_2:byteGen:21:dFF.i_enable
+enable => enardFF_2:byteGen:22:dFF.i_enable
+enable => enardFF_2:byteGen:23:dFF.i_enable
+enable => enardFF_2:byteGen:24:dFF.i_enable
+enable => enardFF_2:byteGen:25:dFF.i_enable
+enable => enardFF_2:byteGen:26:dFF.i_enable
+enable => enardFF_2:byteGen:27:dFF.i_enable
+enable => enardFF_2:byteGen:28:dFF.i_enable
+enable => enardFF_2:byteGen:29:dFF.i_enable
+enable => enardFF_2:byteGen:30:dFF.i_enable
+enable => enardFF_2:byteGen:31:dFF.i_enable
+reset => enardFF_2:byteGen:0:dFF.i_resetBar
+reset => enardFF_2:byteGen:1:dFF.i_resetBar
+reset => enardFF_2:byteGen:2:dFF.i_resetBar
+reset => enardFF_2:byteGen:3:dFF.i_resetBar
+reset => enardFF_2:byteGen:4:dFF.i_resetBar
+reset => enardFF_2:byteGen:5:dFF.i_resetBar
+reset => enardFF_2:byteGen:6:dFF.i_resetBar
+reset => enardFF_2:byteGen:7:dFF.i_resetBar
+reset => enardFF_2:byteGen:8:dFF.i_resetBar
+reset => enardFF_2:byteGen:9:dFF.i_resetBar
+reset => enardFF_2:byteGen:10:dFF.i_resetBar
+reset => enardFF_2:byteGen:11:dFF.i_resetBar
+reset => enardFF_2:byteGen:12:dFF.i_resetBar
+reset => enardFF_2:byteGen:13:dFF.i_resetBar
+reset => enardFF_2:byteGen:14:dFF.i_resetBar
+reset => enardFF_2:byteGen:15:dFF.i_resetBar
+reset => enardFF_2:byteGen:16:dFF.i_resetBar
+reset => enardFF_2:byteGen:17:dFF.i_resetBar
+reset => enardFF_2:byteGen:18:dFF.i_resetBar
+reset => enardFF_2:byteGen:19:dFF.i_resetBar
+reset => enardFF_2:byteGen:20:dFF.i_resetBar
+reset => enardFF_2:byteGen:21:dFF.i_resetBar
+reset => enardFF_2:byteGen:22:dFF.i_resetBar
+reset => enardFF_2:byteGen:23:dFF.i_resetBar
+reset => enardFF_2:byteGen:24:dFF.i_resetBar
+reset => enardFF_2:byteGen:25:dFF.i_resetBar
+reset => enardFF_2:byteGen:26:dFF.i_resetBar
+reset => enardFF_2:byteGen:27:dFF.i_resetBar
+reset => enardFF_2:byteGen:28:dFF.i_resetBar
+reset => enardFF_2:byteGen:29:dFF.i_resetBar
+reset => enardFF_2:byteGen:30:dFF.i_resetBar
+reset => enardFF_2:byteGen:31:dFF.i_resetBar
+Data_IN[0] => enardFF_2:byteGen:0:dFF.i_d
+Data_IN[1] => enardFF_2:byteGen:1:dFF.i_d
+Data_IN[2] => enardFF_2:byteGen:2:dFF.i_d
+Data_IN[3] => enardFF_2:byteGen:3:dFF.i_d
+Data_IN[4] => enardFF_2:byteGen:4:dFF.i_d
+Data_IN[5] => enardFF_2:byteGen:5:dFF.i_d
+Data_IN[6] => enardFF_2:byteGen:6:dFF.i_d
+Data_IN[7] => enardFF_2:byteGen:7:dFF.i_d
+Data_IN[8] => enardFF_2:byteGen:8:dFF.i_d
+Data_IN[9] => enardFF_2:byteGen:9:dFF.i_d
+Data_IN[10] => enardFF_2:byteGen:10:dFF.i_d
+Data_IN[11] => enardFF_2:byteGen:11:dFF.i_d
+Data_IN[12] => enardFF_2:byteGen:12:dFF.i_d
+Data_IN[13] => enardFF_2:byteGen:13:dFF.i_d
+Data_IN[14] => enardFF_2:byteGen:14:dFF.i_d
+Data_IN[15] => enardFF_2:byteGen:15:dFF.i_d
+Data_IN[16] => enardFF_2:byteGen:16:dFF.i_d
+Data_IN[17] => enardFF_2:byteGen:17:dFF.i_d
+Data_IN[18] => enardFF_2:byteGen:18:dFF.i_d
+Data_IN[19] => enardFF_2:byteGen:19:dFF.i_d
+Data_IN[20] => enardFF_2:byteGen:20:dFF.i_d
+Data_IN[21] => enardFF_2:byteGen:21:dFF.i_d
+Data_IN[22] => enardFF_2:byteGen:22:dFF.i_d
+Data_IN[23] => enardFF_2:byteGen:23:dFF.i_d
+Data_IN[24] => enardFF_2:byteGen:24:dFF.i_d
+Data_IN[25] => enardFF_2:byteGen:25:dFF.i_d
+Data_IN[26] => enardFF_2:byteGen:26:dFF.i_d
+Data_IN[27] => enardFF_2:byteGen:27:dFF.i_d
+Data_IN[28] => enardFF_2:byteGen:28:dFF.i_d
+Data_IN[29] => enardFF_2:byteGen:29:dFF.i_d
+Data_IN[30] => enardFF_2:byteGen:30:dFF.i_d
+Data_IN[31] => enardFF_2:byteGen:31:dFF.i_d
+Data_out[0] <= enardFF_2:byteGen:0:dFF.o_q
+Data_out[1] <= enardFF_2:byteGen:1:dFF.o_q
+Data_out[2] <= enardFF_2:byteGen:2:dFF.o_q
+Data_out[3] <= enardFF_2:byteGen:3:dFF.o_q
+Data_out[4] <= enardFF_2:byteGen:4:dFF.o_q
+Data_out[5] <= enardFF_2:byteGen:5:dFF.o_q
+Data_out[6] <= enardFF_2:byteGen:6:dFF.o_q
+Data_out[7] <= enardFF_2:byteGen:7:dFF.o_q
+Data_out[8] <= enardFF_2:byteGen:8:dFF.o_q
+Data_out[9] <= enardFF_2:byteGen:9:dFF.o_q
+Data_out[10] <= enardFF_2:byteGen:10:dFF.o_q
+Data_out[11] <= enardFF_2:byteGen:11:dFF.o_q
+Data_out[12] <= enardFF_2:byteGen:12:dFF.o_q
+Data_out[13] <= enardFF_2:byteGen:13:dFF.o_q
+Data_out[14] <= enardFF_2:byteGen:14:dFF.o_q
+Data_out[15] <= enardFF_2:byteGen:15:dFF.o_q
+Data_out[16] <= enardFF_2:byteGen:16:dFF.o_q
+Data_out[17] <= enardFF_2:byteGen:17:dFF.o_q
+Data_out[18] <= enardFF_2:byteGen:18:dFF.o_q
+Data_out[19] <= enardFF_2:byteGen:19:dFF.o_q
+Data_out[20] <= enardFF_2:byteGen:20:dFF.o_q
+Data_out[21] <= enardFF_2:byteGen:21:dFF.o_q
+Data_out[22] <= enardFF_2:byteGen:22:dFF.o_q
+Data_out[23] <= enardFF_2:byteGen:23:dFF.o_q
+Data_out[24] <= enardFF_2:byteGen:24:dFF.o_q
+Data_out[25] <= enardFF_2:byteGen:25:dFF.o_q
+Data_out[26] <= enardFF_2:byteGen:26:dFF.o_q
+Data_out[27] <= enardFF_2:byteGen:27:dFF.o_q
+Data_out[28] <= enardFF_2:byteGen:28:dFF.o_q
+Data_out[29] <= enardFF_2:byteGen:29:dFF.o_q
+Data_out[30] <= enardFF_2:byteGen:30:dFF.o_q
+Data_out[31] <= enardFF_2:byteGen:31:dFF.o_q
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:0:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:1:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:2:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:3:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:4:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:5:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:6:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:7:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:8:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:9:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:10:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:11:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:12:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:13:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:14:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:15:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:16:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:17:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:18:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:19:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:20:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:21:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:22:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:23:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:24:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:25:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:26:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:27:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:28:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:29:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:30:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Register_32bit:PC_reg|enARdFF_2:\byteGen:31:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|InstructionMemory:inst_mem
+address[0] => altsyncram:altsyncram_component.address_a[0]
+address[1] => altsyncram:altsyncram_component.address_a[1]
+address[2] => altsyncram:altsyncram_component.address_a[2]
+address[3] => altsyncram:altsyncram_component.address_a[3]
+address[4] => altsyncram:altsyncram_component.address_a[4]
+address[5] => altsyncram:altsyncram_component.address_a[5]
+address[6] => altsyncram:altsyncram_component.address_a[6]
+address[7] => altsyncram:altsyncram_component.address_a[7]
+clock => altsyncram:altsyncram_component.clock0
+data[0] <= altsyncram:altsyncram_component.q_a[0]
+data[1] <= altsyncram:altsyncram_component.q_a[1]
+data[2] <= altsyncram:altsyncram_component.q_a[2]
+data[3] <= altsyncram:altsyncram_component.q_a[3]
+data[4] <= altsyncram:altsyncram_component.q_a[4]
+data[5] <= altsyncram:altsyncram_component.q_a[5]
+data[6] <= altsyncram:altsyncram_component.q_a[6]
+data[7] <= altsyncram:altsyncram_component.q_a[7]
+data[8] <= altsyncram:altsyncram_component.q_a[8]
+data[9] <= altsyncram:altsyncram_component.q_a[9]
+data[10] <= altsyncram:altsyncram_component.q_a[10]
+data[11] <= altsyncram:altsyncram_component.q_a[11]
+data[12] <= altsyncram:altsyncram_component.q_a[12]
+data[13] <= altsyncram:altsyncram_component.q_a[13]
+data[14] <= altsyncram:altsyncram_component.q_a[14]
+data[15] <= altsyncram:altsyncram_component.q_a[15]
+data[16] <= altsyncram:altsyncram_component.q_a[16]
+data[17] <= altsyncram:altsyncram_component.q_a[17]
+data[18] <= altsyncram:altsyncram_component.q_a[18]
+data[19] <= altsyncram:altsyncram_component.q_a[19]
+data[20] <= altsyncram:altsyncram_component.q_a[20]
+data[21] <= altsyncram:altsyncram_component.q_a[21]
+data[22] <= altsyncram:altsyncram_component.q_a[22]
+data[23] <= altsyncram:altsyncram_component.q_a[23]
+data[24] <= altsyncram:altsyncram_component.q_a[24]
+data[25] <= altsyncram:altsyncram_component.q_a[25]
+data[26] <= altsyncram:altsyncram_component.q_a[26]
+data[27] <= altsyncram:altsyncram_component.q_a[27]
+data[28] <= altsyncram:altsyncram_component.q_a[28]
+data[29] <= altsyncram:altsyncram_component.q_a[29]
+data[30] <= altsyncram:altsyncram_component.q_a[30]
+data[31] <= altsyncram:altsyncram_component.q_a[31]
+
+
+|singleCycleProc|InstructionMemory:inst_mem|altsyncram:altsyncram_component
+wren_a => ~NO_FANOUT~
+rden_a => ~NO_FANOUT~
+wren_b => ~NO_FANOUT~
+rden_b => ~NO_FANOUT~
+data_a[0] => ~NO_FANOUT~
+data_a[1] => ~NO_FANOUT~
+data_a[2] => ~NO_FANOUT~
+data_a[3] => ~NO_FANOUT~
+data_a[4] => ~NO_FANOUT~
+data_a[5] => ~NO_FANOUT~
+data_a[6] => ~NO_FANOUT~
+data_a[7] => ~NO_FANOUT~
+data_a[8] => ~NO_FANOUT~
+data_a[9] => ~NO_FANOUT~
+data_a[10] => ~NO_FANOUT~
+data_a[11] => ~NO_FANOUT~
+data_a[12] => ~NO_FANOUT~
+data_a[13] => ~NO_FANOUT~
+data_a[14] => ~NO_FANOUT~
+data_a[15] => ~NO_FANOUT~
+data_a[16] => ~NO_FANOUT~
+data_a[17] => ~NO_FANOUT~
+data_a[18] => ~NO_FANOUT~
+data_a[19] => ~NO_FANOUT~
+data_a[20] => ~NO_FANOUT~
+data_a[21] => ~NO_FANOUT~
+data_a[22] => ~NO_FANOUT~
+data_a[23] => ~NO_FANOUT~
+data_a[24] => ~NO_FANOUT~
+data_a[25] => ~NO_FANOUT~
+data_a[26] => ~NO_FANOUT~
+data_a[27] => ~NO_FANOUT~
+data_a[28] => ~NO_FANOUT~
+data_a[29] => ~NO_FANOUT~
+data_a[30] => ~NO_FANOUT~
+data_a[31] => ~NO_FANOUT~
+data_b[0] => ~NO_FANOUT~
+address_a[0] => altsyncram_3sa1:auto_generated.address_a[0]
+address_a[1] => altsyncram_3sa1:auto_generated.address_a[1]
+address_a[2] => altsyncram_3sa1:auto_generated.address_a[2]
+address_a[3] => altsyncram_3sa1:auto_generated.address_a[3]
+address_a[4] => altsyncram_3sa1:auto_generated.address_a[4]
+address_a[5] => altsyncram_3sa1:auto_generated.address_a[5]
+address_a[6] => altsyncram_3sa1:auto_generated.address_a[6]
+address_a[7] => altsyncram_3sa1:auto_generated.address_a[7]
+address_b[0] => ~NO_FANOUT~
+addressstall_a => ~NO_FANOUT~
+addressstall_b => ~NO_FANOUT~
+clock0 => altsyncram_3sa1:auto_generated.clock0
+clock1 => ~NO_FANOUT~
+clocken0 => ~NO_FANOUT~
+clocken1 => ~NO_FANOUT~
+clocken2 => ~NO_FANOUT~
+clocken3 => ~NO_FANOUT~
+aclr0 => ~NO_FANOUT~
+aclr1 => ~NO_FANOUT~
+byteena_a[0] => ~NO_FANOUT~
+byteena_b[0] => ~NO_FANOUT~
+q_a[0] <= altsyncram_3sa1:auto_generated.q_a[0]
+q_a[1] <= altsyncram_3sa1:auto_generated.q_a[1]
+q_a[2] <= altsyncram_3sa1:auto_generated.q_a[2]
+q_a[3] <= altsyncram_3sa1:auto_generated.q_a[3]
+q_a[4] <= altsyncram_3sa1:auto_generated.q_a[4]
+q_a[5] <= altsyncram_3sa1:auto_generated.q_a[5]
+q_a[6] <= altsyncram_3sa1:auto_generated.q_a[6]
+q_a[7] <= altsyncram_3sa1:auto_generated.q_a[7]
+q_a[8] <= altsyncram_3sa1:auto_generated.q_a[8]
+q_a[9] <= altsyncram_3sa1:auto_generated.q_a[9]
+q_a[10] <= altsyncram_3sa1:auto_generated.q_a[10]
+q_a[11] <= altsyncram_3sa1:auto_generated.q_a[11]
+q_a[12] <= altsyncram_3sa1:auto_generated.q_a[12]
+q_a[13] <= altsyncram_3sa1:auto_generated.q_a[13]
+q_a[14] <= altsyncram_3sa1:auto_generated.q_a[14]
+q_a[15] <= altsyncram_3sa1:auto_generated.q_a[15]
+q_a[16] <= altsyncram_3sa1:auto_generated.q_a[16]
+q_a[17] <= altsyncram_3sa1:auto_generated.q_a[17]
+q_a[18] <= altsyncram_3sa1:auto_generated.q_a[18]
+q_a[19] <= altsyncram_3sa1:auto_generated.q_a[19]
+q_a[20] <= altsyncram_3sa1:auto_generated.q_a[20]
+q_a[21] <= altsyncram_3sa1:auto_generated.q_a[21]
+q_a[22] <= altsyncram_3sa1:auto_generated.q_a[22]
+q_a[23] <= altsyncram_3sa1:auto_generated.q_a[23]
+q_a[24] <= altsyncram_3sa1:auto_generated.q_a[24]
+q_a[25] <= altsyncram_3sa1:auto_generated.q_a[25]
+q_a[26] <= altsyncram_3sa1:auto_generated.q_a[26]
+q_a[27] <= altsyncram_3sa1:auto_generated.q_a[27]
+q_a[28] <= altsyncram_3sa1:auto_generated.q_a[28]
+q_a[29] <= altsyncram_3sa1:auto_generated.q_a[29]
+q_a[30] <= altsyncram_3sa1:auto_generated.q_a[30]
+q_a[31] <= altsyncram_3sa1:auto_generated.q_a[31]
+q_b[0] <= <GND>
+eccstatus[0] <= <GND>
+eccstatus[1] <= <GND>
+eccstatus[2] <= <GND>
+
+
+|singleCycleProc|InstructionMemory:inst_mem|altsyncram:altsyncram_component|altsyncram_3sa1:auto_generated
+address_a[0] => ram_block1a0.PORTAADDR
+address_a[0] => ram_block1a1.PORTAADDR
+address_a[0] => ram_block1a2.PORTAADDR
+address_a[0] => ram_block1a3.PORTAADDR
+address_a[0] => ram_block1a4.PORTAADDR
+address_a[0] => ram_block1a5.PORTAADDR
+address_a[0] => ram_block1a6.PORTAADDR
+address_a[0] => ram_block1a7.PORTAADDR
+address_a[0] => ram_block1a8.PORTAADDR
+address_a[0] => ram_block1a9.PORTAADDR
+address_a[0] => ram_block1a10.PORTAADDR
+address_a[0] => ram_block1a11.PORTAADDR
+address_a[0] => ram_block1a12.PORTAADDR
+address_a[0] => ram_block1a13.PORTAADDR
+address_a[0] => ram_block1a14.PORTAADDR
+address_a[0] => ram_block1a15.PORTAADDR
+address_a[0] => ram_block1a16.PORTAADDR
+address_a[0] => ram_block1a17.PORTAADDR
+address_a[0] => ram_block1a18.PORTAADDR
+address_a[0] => ram_block1a19.PORTAADDR
+address_a[0] => ram_block1a20.PORTAADDR
+address_a[0] => ram_block1a21.PORTAADDR
+address_a[0] => ram_block1a22.PORTAADDR
+address_a[0] => ram_block1a23.PORTAADDR
+address_a[0] => ram_block1a24.PORTAADDR
+address_a[0] => ram_block1a25.PORTAADDR
+address_a[0] => ram_block1a26.PORTAADDR
+address_a[0] => ram_block1a27.PORTAADDR
+address_a[0] => ram_block1a28.PORTAADDR
+address_a[0] => ram_block1a29.PORTAADDR
+address_a[0] => ram_block1a30.PORTAADDR
+address_a[0] => ram_block1a31.PORTAADDR
+address_a[1] => ram_block1a0.PORTAADDR1
+address_a[1] => ram_block1a1.PORTAADDR1
+address_a[1] => ram_block1a2.PORTAADDR1
+address_a[1] => ram_block1a3.PORTAADDR1
+address_a[1] => ram_block1a4.PORTAADDR1
+address_a[1] => ram_block1a5.PORTAADDR1
+address_a[1] => ram_block1a6.PORTAADDR1
+address_a[1] => ram_block1a7.PORTAADDR1
+address_a[1] => ram_block1a8.PORTAADDR1
+address_a[1] => ram_block1a9.PORTAADDR1
+address_a[1] => ram_block1a10.PORTAADDR1
+address_a[1] => ram_block1a11.PORTAADDR1
+address_a[1] => ram_block1a12.PORTAADDR1
+address_a[1] => ram_block1a13.PORTAADDR1
+address_a[1] => ram_block1a14.PORTAADDR1
+address_a[1] => ram_block1a15.PORTAADDR1
+address_a[1] => ram_block1a16.PORTAADDR1
+address_a[1] => ram_block1a17.PORTAADDR1
+address_a[1] => ram_block1a18.PORTAADDR1
+address_a[1] => ram_block1a19.PORTAADDR1
+address_a[1] => ram_block1a20.PORTAADDR1
+address_a[1] => ram_block1a21.PORTAADDR1
+address_a[1] => ram_block1a22.PORTAADDR1
+address_a[1] => ram_block1a23.PORTAADDR1
+address_a[1] => ram_block1a24.PORTAADDR1
+address_a[1] => ram_block1a25.PORTAADDR1
+address_a[1] => ram_block1a26.PORTAADDR1
+address_a[1] => ram_block1a27.PORTAADDR1
+address_a[1] => ram_block1a28.PORTAADDR1
+address_a[1] => ram_block1a29.PORTAADDR1
+address_a[1] => ram_block1a30.PORTAADDR1
+address_a[1] => ram_block1a31.PORTAADDR1
+address_a[2] => ram_block1a0.PORTAADDR2
+address_a[2] => ram_block1a1.PORTAADDR2
+address_a[2] => ram_block1a2.PORTAADDR2
+address_a[2] => ram_block1a3.PORTAADDR2
+address_a[2] => ram_block1a4.PORTAADDR2
+address_a[2] => ram_block1a5.PORTAADDR2
+address_a[2] => ram_block1a6.PORTAADDR2
+address_a[2] => ram_block1a7.PORTAADDR2
+address_a[2] => ram_block1a8.PORTAADDR2
+address_a[2] => ram_block1a9.PORTAADDR2
+address_a[2] => ram_block1a10.PORTAADDR2
+address_a[2] => ram_block1a11.PORTAADDR2
+address_a[2] => ram_block1a12.PORTAADDR2
+address_a[2] => ram_block1a13.PORTAADDR2
+address_a[2] => ram_block1a14.PORTAADDR2
+address_a[2] => ram_block1a15.PORTAADDR2
+address_a[2] => ram_block1a16.PORTAADDR2
+address_a[2] => ram_block1a17.PORTAADDR2
+address_a[2] => ram_block1a18.PORTAADDR2
+address_a[2] => ram_block1a19.PORTAADDR2
+address_a[2] => ram_block1a20.PORTAADDR2
+address_a[2] => ram_block1a21.PORTAADDR2
+address_a[2] => ram_block1a22.PORTAADDR2
+address_a[2] => ram_block1a23.PORTAADDR2
+address_a[2] => ram_block1a24.PORTAADDR2
+address_a[2] => ram_block1a25.PORTAADDR2
+address_a[2] => ram_block1a26.PORTAADDR2
+address_a[2] => ram_block1a27.PORTAADDR2
+address_a[2] => ram_block1a28.PORTAADDR2
+address_a[2] => ram_block1a29.PORTAADDR2
+address_a[2] => ram_block1a30.PORTAADDR2
+address_a[2] => ram_block1a31.PORTAADDR2
+address_a[3] => ram_block1a0.PORTAADDR3
+address_a[3] => ram_block1a1.PORTAADDR3
+address_a[3] => ram_block1a2.PORTAADDR3
+address_a[3] => ram_block1a3.PORTAADDR3
+address_a[3] => ram_block1a4.PORTAADDR3
+address_a[3] => ram_block1a5.PORTAADDR3
+address_a[3] => ram_block1a6.PORTAADDR3
+address_a[3] => ram_block1a7.PORTAADDR3
+address_a[3] => ram_block1a8.PORTAADDR3
+address_a[3] => ram_block1a9.PORTAADDR3
+address_a[3] => ram_block1a10.PORTAADDR3
+address_a[3] => ram_block1a11.PORTAADDR3
+address_a[3] => ram_block1a12.PORTAADDR3
+address_a[3] => ram_block1a13.PORTAADDR3
+address_a[3] => ram_block1a14.PORTAADDR3
+address_a[3] => ram_block1a15.PORTAADDR3
+address_a[3] => ram_block1a16.PORTAADDR3
+address_a[3] => ram_block1a17.PORTAADDR3
+address_a[3] => ram_block1a18.PORTAADDR3
+address_a[3] => ram_block1a19.PORTAADDR3
+address_a[3] => ram_block1a20.PORTAADDR3
+address_a[3] => ram_block1a21.PORTAADDR3
+address_a[3] => ram_block1a22.PORTAADDR3
+address_a[3] => ram_block1a23.PORTAADDR3
+address_a[3] => ram_block1a24.PORTAADDR3
+address_a[3] => ram_block1a25.PORTAADDR3
+address_a[3] => ram_block1a26.PORTAADDR3
+address_a[3] => ram_block1a27.PORTAADDR3
+address_a[3] => ram_block1a28.PORTAADDR3
+address_a[3] => ram_block1a29.PORTAADDR3
+address_a[3] => ram_block1a30.PORTAADDR3
+address_a[3] => ram_block1a31.PORTAADDR3
+address_a[4] => ram_block1a0.PORTAADDR4
+address_a[4] => ram_block1a1.PORTAADDR4
+address_a[4] => ram_block1a2.PORTAADDR4
+address_a[4] => ram_block1a3.PORTAADDR4
+address_a[4] => ram_block1a4.PORTAADDR4
+address_a[4] => ram_block1a5.PORTAADDR4
+address_a[4] => ram_block1a6.PORTAADDR4
+address_a[4] => ram_block1a7.PORTAADDR4
+address_a[4] => ram_block1a8.PORTAADDR4
+address_a[4] => ram_block1a9.PORTAADDR4
+address_a[4] => ram_block1a10.PORTAADDR4
+address_a[4] => ram_block1a11.PORTAADDR4
+address_a[4] => ram_block1a12.PORTAADDR4
+address_a[4] => ram_block1a13.PORTAADDR4
+address_a[4] => ram_block1a14.PORTAADDR4
+address_a[4] => ram_block1a15.PORTAADDR4
+address_a[4] => ram_block1a16.PORTAADDR4
+address_a[4] => ram_block1a17.PORTAADDR4
+address_a[4] => ram_block1a18.PORTAADDR4
+address_a[4] => ram_block1a19.PORTAADDR4
+address_a[4] => ram_block1a20.PORTAADDR4
+address_a[4] => ram_block1a21.PORTAADDR4
+address_a[4] => ram_block1a22.PORTAADDR4
+address_a[4] => ram_block1a23.PORTAADDR4
+address_a[4] => ram_block1a24.PORTAADDR4
+address_a[4] => ram_block1a25.PORTAADDR4
+address_a[4] => ram_block1a26.PORTAADDR4
+address_a[4] => ram_block1a27.PORTAADDR4
+address_a[4] => ram_block1a28.PORTAADDR4
+address_a[4] => ram_block1a29.PORTAADDR4
+address_a[4] => ram_block1a30.PORTAADDR4
+address_a[4] => ram_block1a31.PORTAADDR4
+address_a[5] => ram_block1a0.PORTAADDR5
+address_a[5] => ram_block1a1.PORTAADDR5
+address_a[5] => ram_block1a2.PORTAADDR5
+address_a[5] => ram_block1a3.PORTAADDR5
+address_a[5] => ram_block1a4.PORTAADDR5
+address_a[5] => ram_block1a5.PORTAADDR5
+address_a[5] => ram_block1a6.PORTAADDR5
+address_a[5] => ram_block1a7.PORTAADDR5
+address_a[5] => ram_block1a8.PORTAADDR5
+address_a[5] => ram_block1a9.PORTAADDR5
+address_a[5] => ram_block1a10.PORTAADDR5
+address_a[5] => ram_block1a11.PORTAADDR5
+address_a[5] => ram_block1a12.PORTAADDR5
+address_a[5] => ram_block1a13.PORTAADDR5
+address_a[5] => ram_block1a14.PORTAADDR5
+address_a[5] => ram_block1a15.PORTAADDR5
+address_a[5] => ram_block1a16.PORTAADDR5
+address_a[5] => ram_block1a17.PORTAADDR5
+address_a[5] => ram_block1a18.PORTAADDR5
+address_a[5] => ram_block1a19.PORTAADDR5
+address_a[5] => ram_block1a20.PORTAADDR5
+address_a[5] => ram_block1a21.PORTAADDR5
+address_a[5] => ram_block1a22.PORTAADDR5
+address_a[5] => ram_block1a23.PORTAADDR5
+address_a[5] => ram_block1a24.PORTAADDR5
+address_a[5] => ram_block1a25.PORTAADDR5
+address_a[5] => ram_block1a26.PORTAADDR5
+address_a[5] => ram_block1a27.PORTAADDR5
+address_a[5] => ram_block1a28.PORTAADDR5
+address_a[5] => ram_block1a29.PORTAADDR5
+address_a[5] => ram_block1a30.PORTAADDR5
+address_a[5] => ram_block1a31.PORTAADDR5
+address_a[6] => ram_block1a0.PORTAADDR6
+address_a[6] => ram_block1a1.PORTAADDR6
+address_a[6] => ram_block1a2.PORTAADDR6
+address_a[6] => ram_block1a3.PORTAADDR6
+address_a[6] => ram_block1a4.PORTAADDR6
+address_a[6] => ram_block1a5.PORTAADDR6
+address_a[6] => ram_block1a6.PORTAADDR6
+address_a[6] => ram_block1a7.PORTAADDR6
+address_a[6] => ram_block1a8.PORTAADDR6
+address_a[6] => ram_block1a9.PORTAADDR6
+address_a[6] => ram_block1a10.PORTAADDR6
+address_a[6] => ram_block1a11.PORTAADDR6
+address_a[6] => ram_block1a12.PORTAADDR6
+address_a[6] => ram_block1a13.PORTAADDR6
+address_a[6] => ram_block1a14.PORTAADDR6
+address_a[6] => ram_block1a15.PORTAADDR6
+address_a[6] => ram_block1a16.PORTAADDR6
+address_a[6] => ram_block1a17.PORTAADDR6
+address_a[6] => ram_block1a18.PORTAADDR6
+address_a[6] => ram_block1a19.PORTAADDR6
+address_a[6] => ram_block1a20.PORTAADDR6
+address_a[6] => ram_block1a21.PORTAADDR6
+address_a[6] => ram_block1a22.PORTAADDR6
+address_a[6] => ram_block1a23.PORTAADDR6
+address_a[6] => ram_block1a24.PORTAADDR6
+address_a[6] => ram_block1a25.PORTAADDR6
+address_a[6] => ram_block1a26.PORTAADDR6
+address_a[6] => ram_block1a27.PORTAADDR6
+address_a[6] => ram_block1a28.PORTAADDR6
+address_a[6] => ram_block1a29.PORTAADDR6
+address_a[6] => ram_block1a30.PORTAADDR6
+address_a[6] => ram_block1a31.PORTAADDR6
+address_a[7] => ram_block1a0.PORTAADDR7
+address_a[7] => ram_block1a1.PORTAADDR7
+address_a[7] => ram_block1a2.PORTAADDR7
+address_a[7] => ram_block1a3.PORTAADDR7
+address_a[7] => ram_block1a4.PORTAADDR7
+address_a[7] => ram_block1a5.PORTAADDR7
+address_a[7] => ram_block1a6.PORTAADDR7
+address_a[7] => ram_block1a7.PORTAADDR7
+address_a[7] => ram_block1a8.PORTAADDR7
+address_a[7] => ram_block1a9.PORTAADDR7
+address_a[7] => ram_block1a10.PORTAADDR7
+address_a[7] => ram_block1a11.PORTAADDR7
+address_a[7] => ram_block1a12.PORTAADDR7
+address_a[7] => ram_block1a13.PORTAADDR7
+address_a[7] => ram_block1a14.PORTAADDR7
+address_a[7] => ram_block1a15.PORTAADDR7
+address_a[7] => ram_block1a16.PORTAADDR7
+address_a[7] => ram_block1a17.PORTAADDR7
+address_a[7] => ram_block1a18.PORTAADDR7
+address_a[7] => ram_block1a19.PORTAADDR7
+address_a[7] => ram_block1a20.PORTAADDR7
+address_a[7] => ram_block1a21.PORTAADDR7
+address_a[7] => ram_block1a22.PORTAADDR7
+address_a[7] => ram_block1a23.PORTAADDR7
+address_a[7] => ram_block1a24.PORTAADDR7
+address_a[7] => ram_block1a25.PORTAADDR7
+address_a[7] => ram_block1a26.PORTAADDR7
+address_a[7] => ram_block1a27.PORTAADDR7
+address_a[7] => ram_block1a28.PORTAADDR7
+address_a[7] => ram_block1a29.PORTAADDR7
+address_a[7] => ram_block1a30.PORTAADDR7
+address_a[7] => ram_block1a31.PORTAADDR7
+clock0 => ram_block1a0.CLK0
+clock0 => ram_block1a1.CLK0
+clock0 => ram_block1a2.CLK0
+clock0 => ram_block1a3.CLK0
+clock0 => ram_block1a4.CLK0
+clock0 => ram_block1a5.CLK0
+clock0 => ram_block1a6.CLK0
+clock0 => ram_block1a7.CLK0
+clock0 => ram_block1a8.CLK0
+clock0 => ram_block1a9.CLK0
+clock0 => ram_block1a10.CLK0
+clock0 => ram_block1a11.CLK0
+clock0 => ram_block1a12.CLK0
+clock0 => ram_block1a13.CLK0
+clock0 => ram_block1a14.CLK0
+clock0 => ram_block1a15.CLK0
+clock0 => ram_block1a16.CLK0
+clock0 => ram_block1a17.CLK0
+clock0 => ram_block1a18.CLK0
+clock0 => ram_block1a19.CLK0
+clock0 => ram_block1a20.CLK0
+clock0 => ram_block1a21.CLK0
+clock0 => ram_block1a22.CLK0
+clock0 => ram_block1a23.CLK0
+clock0 => ram_block1a24.CLK0
+clock0 => ram_block1a25.CLK0
+clock0 => ram_block1a26.CLK0
+clock0 => ram_block1a27.CLK0
+clock0 => ram_block1a28.CLK0
+clock0 => ram_block1a29.CLK0
+clock0 => ram_block1a30.CLK0
+clock0 => ram_block1a31.CLK0
+q_a[0] <= ram_block1a0.PORTADATAOUT
+q_a[1] <= ram_block1a1.PORTADATAOUT
+q_a[2] <= ram_block1a2.PORTADATAOUT
+q_a[3] <= ram_block1a3.PORTADATAOUT
+q_a[4] <= ram_block1a4.PORTADATAOUT
+q_a[5] <= ram_block1a5.PORTADATAOUT
+q_a[6] <= ram_block1a6.PORTADATAOUT
+q_a[7] <= ram_block1a7.PORTADATAOUT
+q_a[8] <= ram_block1a8.PORTADATAOUT
+q_a[9] <= ram_block1a9.PORTADATAOUT
+q_a[10] <= ram_block1a10.PORTADATAOUT
+q_a[11] <= ram_block1a11.PORTADATAOUT
+q_a[12] <= ram_block1a12.PORTADATAOUT
+q_a[13] <= ram_block1a13.PORTADATAOUT
+q_a[14] <= ram_block1a14.PORTADATAOUT
+q_a[15] <= ram_block1a15.PORTADATAOUT
+q_a[16] <= ram_block1a16.PORTADATAOUT
+q_a[17] <= ram_block1a17.PORTADATAOUT
+q_a[18] <= ram_block1a18.PORTADATAOUT
+q_a[19] <= ram_block1a19.PORTADATAOUT
+q_a[20] <= ram_block1a20.PORTADATAOUT
+q_a[21] <= ram_block1a21.PORTADATAOUT
+q_a[22] <= ram_block1a22.PORTADATAOUT
+q_a[23] <= ram_block1a23.PORTADATAOUT
+q_a[24] <= ram_block1a24.PORTADATAOUT
+q_a[25] <= ram_block1a25.PORTADATAOUT
+q_a[26] <= ram_block1a26.PORTADATAOUT
+q_a[27] <= ram_block1a27.PORTADATAOUT
+q_a[28] <= ram_block1a28.PORTADATAOUT
+q_a[29] <= ram_block1a29.PORTADATAOUT
+q_a[30] <= ram_block1a30.PORTADATAOUT
+q_a[31] <= ram_block1a31.PORTADATAOUT
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4
+AddSubCtrl => int_y[0].IN0
+AddSubCtrl => int_y[1].IN0
+AddSubCtrl => int_y[2].IN0
+AddSubCtrl => int_y[3].IN0
+AddSubCtrl => int_y[4].IN0
+AddSubCtrl => int_y[5].IN0
+AddSubCtrl => int_y[6].IN0
+AddSubCtrl => int_y[7].IN0
+AddSubCtrl => int_y[8].IN0
+AddSubCtrl => int_y[9].IN0
+AddSubCtrl => int_y[10].IN0
+AddSubCtrl => int_y[11].IN0
+AddSubCtrl => int_y[12].IN0
+AddSubCtrl => int_y[13].IN0
+AddSubCtrl => int_y[14].IN0
+AddSubCtrl => int_y[15].IN0
+AddSubCtrl => int_y[16].IN0
+AddSubCtrl => int_y[17].IN0
+AddSubCtrl => int_y[18].IN0
+AddSubCtrl => int_y[19].IN0
+AddSubCtrl => int_y[20].IN0
+AddSubCtrl => int_y[21].IN0
+AddSubCtrl => int_y[22].IN0
+AddSubCtrl => int_y[23].IN0
+AddSubCtrl => int_y[24].IN0
+AddSubCtrl => int_y[25].IN0
+AddSubCtrl => int_y[26].IN0
+AddSubCtrl => int_y[27].IN0
+AddSubCtrl => int_y[28].IN0
+AddSubCtrl => int_y[29].IN0
+AddSubCtrl => int_y[30].IN0
+AddSubCtrl => int_y[31].IN0
+AddSubCtrl => oneBitAdder:GEN_ADDER:0:gen_OneBitAdders.i_CarryIn
+x[0] => oneBitAdder:GEN_ADDER:0:gen_OneBitAdders.i_Xi
+x[1] => oneBitAdder:GEN_ADDER:1:gen_OneBitAdders.i_Xi
+x[2] => oneBitAdder:GEN_ADDER:2:gen_OneBitAdders.i_Xi
+x[3] => oneBitAdder:GEN_ADDER:3:gen_OneBitAdders.i_Xi
+x[4] => oneBitAdder:GEN_ADDER:4:gen_OneBitAdders.i_Xi
+x[5] => oneBitAdder:GEN_ADDER:5:gen_OneBitAdders.i_Xi
+x[6] => oneBitAdder:GEN_ADDER:6:gen_OneBitAdders.i_Xi
+x[7] => oneBitAdder:GEN_ADDER:7:gen_OneBitAdders.i_Xi
+x[8] => oneBitAdder:GEN_ADDER:8:gen_OneBitAdders.i_Xi
+x[9] => oneBitAdder:GEN_ADDER:9:gen_OneBitAdders.i_Xi
+x[10] => oneBitAdder:GEN_ADDER:10:gen_OneBitAdders.i_Xi
+x[11] => oneBitAdder:GEN_ADDER:11:gen_OneBitAdders.i_Xi
+x[12] => oneBitAdder:GEN_ADDER:12:gen_OneBitAdders.i_Xi
+x[13] => oneBitAdder:GEN_ADDER:13:gen_OneBitAdders.i_Xi
+x[14] => oneBitAdder:GEN_ADDER:14:gen_OneBitAdders.i_Xi
+x[15] => oneBitAdder:GEN_ADDER:15:gen_OneBitAdders.i_Xi
+x[16] => oneBitAdder:GEN_ADDER:16:gen_OneBitAdders.i_Xi
+x[17] => oneBitAdder:GEN_ADDER:17:gen_OneBitAdders.i_Xi
+x[18] => oneBitAdder:GEN_ADDER:18:gen_OneBitAdders.i_Xi
+x[19] => oneBitAdder:GEN_ADDER:19:gen_OneBitAdders.i_Xi
+x[20] => oneBitAdder:GEN_ADDER:20:gen_OneBitAdders.i_Xi
+x[21] => oneBitAdder:GEN_ADDER:21:gen_OneBitAdders.i_Xi
+x[22] => oneBitAdder:GEN_ADDER:22:gen_OneBitAdders.i_Xi
+x[23] => oneBitAdder:GEN_ADDER:23:gen_OneBitAdders.i_Xi
+x[24] => oneBitAdder:GEN_ADDER:24:gen_OneBitAdders.i_Xi
+x[25] => oneBitAdder:GEN_ADDER:25:gen_OneBitAdders.i_Xi
+x[26] => oneBitAdder:GEN_ADDER:26:gen_OneBitAdders.i_Xi
+x[27] => oneBitAdder:GEN_ADDER:27:gen_OneBitAdders.i_Xi
+x[28] => oneBitAdder:GEN_ADDER:28:gen_OneBitAdders.i_Xi
+x[29] => oneBitAdder:GEN_ADDER:29:gen_OneBitAdders.i_Xi
+x[30] => oneBitAdder:GEN_ADDER:30:gen_OneBitAdders.i_Xi
+x[31] => oneBitAdder:GEN_ADDER:31:gen_OneBitAdders.i_Xi
+y[0] => int_y[0].IN1
+y[1] => int_y[1].IN1
+y[2] => int_y[2].IN1
+y[3] => int_y[3].IN1
+y[4] => int_y[4].IN1
+y[5] => int_y[5].IN1
+y[6] => int_y[6].IN1
+y[7] => int_y[7].IN1
+y[8] => int_y[8].IN1
+y[9] => int_y[9].IN1
+y[10] => int_y[10].IN1
+y[11] => int_y[11].IN1
+y[12] => int_y[12].IN1
+y[13] => int_y[13].IN1
+y[14] => int_y[14].IN1
+y[15] => int_y[15].IN1
+y[16] => int_y[16].IN1
+y[17] => int_y[17].IN1
+y[18] => int_y[18].IN1
+y[19] => int_y[19].IN1
+y[20] => int_y[20].IN1
+y[21] => int_y[21].IN1
+y[22] => int_y[22].IN1
+y[23] => int_y[23].IN1
+y[24] => int_y[24].IN1
+y[25] => int_y[25].IN1
+y[26] => int_y[26].IN1
+y[27] => int_y[27].IN1
+y[28] => int_y[28].IN1
+y[29] => int_y[29].IN1
+y[30] => int_y[30].IN1
+y[31] => int_y[31].IN1
+Sum[0] <= oneBitAdder:GEN_ADDER:0:gen_OneBitAdders.o_Sum
+Sum[1] <= oneBitAdder:GEN_ADDER:1:gen_OneBitAdders.o_Sum
+Sum[2] <= oneBitAdder:GEN_ADDER:2:gen_OneBitAdders.o_Sum
+Sum[3] <= oneBitAdder:GEN_ADDER:3:gen_OneBitAdders.o_Sum
+Sum[4] <= oneBitAdder:GEN_ADDER:4:gen_OneBitAdders.o_Sum
+Sum[5] <= oneBitAdder:GEN_ADDER:5:gen_OneBitAdders.o_Sum
+Sum[6] <= oneBitAdder:GEN_ADDER:6:gen_OneBitAdders.o_Sum
+Sum[7] <= oneBitAdder:GEN_ADDER:7:gen_OneBitAdders.o_Sum
+Sum[8] <= oneBitAdder:GEN_ADDER:8:gen_OneBitAdders.o_Sum
+Sum[9] <= oneBitAdder:GEN_ADDER:9:gen_OneBitAdders.o_Sum
+Sum[10] <= oneBitAdder:GEN_ADDER:10:gen_OneBitAdders.o_Sum
+Sum[11] <= oneBitAdder:GEN_ADDER:11:gen_OneBitAdders.o_Sum
+Sum[12] <= oneBitAdder:GEN_ADDER:12:gen_OneBitAdders.o_Sum
+Sum[13] <= oneBitAdder:GEN_ADDER:13:gen_OneBitAdders.o_Sum
+Sum[14] <= oneBitAdder:GEN_ADDER:14:gen_OneBitAdders.o_Sum
+Sum[15] <= oneBitAdder:GEN_ADDER:15:gen_OneBitAdders.o_Sum
+Sum[16] <= oneBitAdder:GEN_ADDER:16:gen_OneBitAdders.o_Sum
+Sum[17] <= oneBitAdder:GEN_ADDER:17:gen_OneBitAdders.o_Sum
+Sum[18] <= oneBitAdder:GEN_ADDER:18:gen_OneBitAdders.o_Sum
+Sum[19] <= oneBitAdder:GEN_ADDER:19:gen_OneBitAdders.o_Sum
+Sum[20] <= oneBitAdder:GEN_ADDER:20:gen_OneBitAdders.o_Sum
+Sum[21] <= oneBitAdder:GEN_ADDER:21:gen_OneBitAdders.o_Sum
+Sum[22] <= oneBitAdder:GEN_ADDER:22:gen_OneBitAdders.o_Sum
+Sum[23] <= oneBitAdder:GEN_ADDER:23:gen_OneBitAdders.o_Sum
+Sum[24] <= oneBitAdder:GEN_ADDER:24:gen_OneBitAdders.o_Sum
+Sum[25] <= oneBitAdder:GEN_ADDER:25:gen_OneBitAdders.o_Sum
+Sum[26] <= oneBitAdder:GEN_ADDER:26:gen_OneBitAdders.o_Sum
+Sum[27] <= oneBitAdder:GEN_ADDER:27:gen_OneBitAdders.o_Sum
+Sum[28] <= oneBitAdder:GEN_ADDER:28:gen_OneBitAdders.o_Sum
+Sum[29] <= oneBitAdder:GEN_ADDER:29:gen_OneBitAdders.o_Sum
+Sum[30] <= oneBitAdder:GEN_ADDER:30:gen_OneBitAdders.o_Sum
+Sum[31] <= oneBitAdder:GEN_ADDER:31:gen_OneBitAdders.o_Sum
+CarryOut <= oneBitAdder:GEN_ADDER:31:gen_OneBitAdders.o_CarryOut
+OverflowOut <= OverflowOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:0:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:1:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:2:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:3:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:4:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:5:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:6:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:7:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:8:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:9:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:10:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:11:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:12:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:13:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:14:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:15:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:16:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:17:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:18:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:19:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:20:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:21:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:22:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:23:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:24:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:25:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:26:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:27:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:28:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:29:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:30:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_PC4|oneBitAdder:\GEN_ADDER:31:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|se16_32:se_inst
+i_in[0] => o_out[0].DATAIN
+i_in[1] => o_out[1].DATAIN
+i_in[2] => o_out[2].DATAIN
+i_in[3] => o_out[3].DATAIN
+i_in[4] => o_out[4].DATAIN
+i_in[5] => o_out[5].DATAIN
+i_in[6] => o_out[6].DATAIN
+i_in[7] => o_out[7].DATAIN
+i_in[8] => o_out[8].DATAIN
+i_in[9] => o_out[9].DATAIN
+i_in[10] => o_out[10].DATAIN
+i_in[11] => o_out[11].DATAIN
+i_in[12] => o_out[12].DATAIN
+i_in[13] => o_out[13].DATAIN
+i_in[14] => o_out[14].DATAIN
+i_in[15] => o_out[15].DATAIN
+i_in[15] => o_out[31].DATAIN
+i_in[15] => o_out[30].DATAIN
+i_in[15] => o_out[29].DATAIN
+i_in[15] => o_out[28].DATAIN
+i_in[15] => o_out[27].DATAIN
+i_in[15] => o_out[26].DATAIN
+i_in[15] => o_out[25].DATAIN
+i_in[15] => o_out[24].DATAIN
+i_in[15] => o_out[23].DATAIN
+i_in[15] => o_out[22].DATAIN
+i_in[15] => o_out[21].DATAIN
+i_in[15] => o_out[20].DATAIN
+i_in[15] => o_out[19].DATAIN
+i_in[15] => o_out[18].DATAIN
+i_in[15] => o_out[17].DATAIN
+i_in[15] => o_out[16].DATAIN
+o_out[0] <= i_in[0].DB_MAX_OUTPUT_PORT_TYPE
+o_out[1] <= i_in[1].DB_MAX_OUTPUT_PORT_TYPE
+o_out[2] <= i_in[2].DB_MAX_OUTPUT_PORT_TYPE
+o_out[3] <= i_in[3].DB_MAX_OUTPUT_PORT_TYPE
+o_out[4] <= i_in[4].DB_MAX_OUTPUT_PORT_TYPE
+o_out[5] <= i_in[5].DB_MAX_OUTPUT_PORT_TYPE
+o_out[6] <= i_in[6].DB_MAX_OUTPUT_PORT_TYPE
+o_out[7] <= i_in[7].DB_MAX_OUTPUT_PORT_TYPE
+o_out[8] <= i_in[8].DB_MAX_OUTPUT_PORT_TYPE
+o_out[9] <= i_in[9].DB_MAX_OUTPUT_PORT_TYPE
+o_out[10] <= i_in[10].DB_MAX_OUTPUT_PORT_TYPE
+o_out[11] <= i_in[11].DB_MAX_OUTPUT_PORT_TYPE
+o_out[12] <= i_in[12].DB_MAX_OUTPUT_PORT_TYPE
+o_out[13] <= i_in[13].DB_MAX_OUTPUT_PORT_TYPE
+o_out[14] <= i_in[14].DB_MAX_OUTPUT_PORT_TYPE
+o_out[15] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[16] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[17] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[18] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[19] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[20] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[21] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[22] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[23] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[24] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[25] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[26] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[27] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[28] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[29] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[30] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[31] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|sl2_32bit:sl2_branch
+i_in[0] => o_out[2].DATAIN
+i_in[1] => o_out[3].DATAIN
+i_in[2] => o_out[4].DATAIN
+i_in[3] => o_out[5].DATAIN
+i_in[4] => o_out[6].DATAIN
+i_in[5] => o_out[7].DATAIN
+i_in[6] => o_out[8].DATAIN
+i_in[7] => o_out[9].DATAIN
+i_in[8] => o_out[10].DATAIN
+i_in[9] => o_out[11].DATAIN
+i_in[10] => o_out[12].DATAIN
+i_in[11] => o_out[13].DATAIN
+i_in[12] => o_out[14].DATAIN
+i_in[13] => o_out[15].DATAIN
+i_in[14] => o_out[16].DATAIN
+i_in[15] => o_out[17].DATAIN
+i_in[16] => o_out[18].DATAIN
+i_in[17] => o_out[19].DATAIN
+i_in[18] => o_out[20].DATAIN
+i_in[19] => o_out[21].DATAIN
+i_in[20] => o_out[22].DATAIN
+i_in[21] => o_out[23].DATAIN
+i_in[22] => o_out[24].DATAIN
+i_in[23] => o_out[25].DATAIN
+i_in[24] => o_out[26].DATAIN
+i_in[25] => o_out[27].DATAIN
+i_in[26] => o_out[28].DATAIN
+i_in[27] => o_out[29].DATAIN
+i_in[28] => o_out[30].DATAIN
+i_in[29] => o_out[31].DATAIN
+i_in[30] => ~NO_FANOUT~
+i_in[31] => ~NO_FANOUT~
+o_out[0] <= <GND>
+o_out[1] <= <GND>
+o_out[2] <= i_in[0].DB_MAX_OUTPUT_PORT_TYPE
+o_out[3] <= i_in[1].DB_MAX_OUTPUT_PORT_TYPE
+o_out[4] <= i_in[2].DB_MAX_OUTPUT_PORT_TYPE
+o_out[5] <= i_in[3].DB_MAX_OUTPUT_PORT_TYPE
+o_out[6] <= i_in[4].DB_MAX_OUTPUT_PORT_TYPE
+o_out[7] <= i_in[5].DB_MAX_OUTPUT_PORT_TYPE
+o_out[8] <= i_in[6].DB_MAX_OUTPUT_PORT_TYPE
+o_out[9] <= i_in[7].DB_MAX_OUTPUT_PORT_TYPE
+o_out[10] <= i_in[8].DB_MAX_OUTPUT_PORT_TYPE
+o_out[11] <= i_in[9].DB_MAX_OUTPUT_PORT_TYPE
+o_out[12] <= i_in[10].DB_MAX_OUTPUT_PORT_TYPE
+o_out[13] <= i_in[11].DB_MAX_OUTPUT_PORT_TYPE
+o_out[14] <= i_in[12].DB_MAX_OUTPUT_PORT_TYPE
+o_out[15] <= i_in[13].DB_MAX_OUTPUT_PORT_TYPE
+o_out[16] <= i_in[14].DB_MAX_OUTPUT_PORT_TYPE
+o_out[17] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[18] <= i_in[16].DB_MAX_OUTPUT_PORT_TYPE
+o_out[19] <= i_in[17].DB_MAX_OUTPUT_PORT_TYPE
+o_out[20] <= i_in[18].DB_MAX_OUTPUT_PORT_TYPE
+o_out[21] <= i_in[19].DB_MAX_OUTPUT_PORT_TYPE
+o_out[22] <= i_in[20].DB_MAX_OUTPUT_PORT_TYPE
+o_out[23] <= i_in[21].DB_MAX_OUTPUT_PORT_TYPE
+o_out[24] <= i_in[22].DB_MAX_OUTPUT_PORT_TYPE
+o_out[25] <= i_in[23].DB_MAX_OUTPUT_PORT_TYPE
+o_out[26] <= i_in[24].DB_MAX_OUTPUT_PORT_TYPE
+o_out[27] <= i_in[25].DB_MAX_OUTPUT_PORT_TYPE
+o_out[28] <= i_in[26].DB_MAX_OUTPUT_PORT_TYPE
+o_out[29] <= i_in[27].DB_MAX_OUTPUT_PORT_TYPE
+o_out[30] <= i_in[28].DB_MAX_OUTPUT_PORT_TYPE
+o_out[31] <= i_in[29].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch
+AddSubCtrl => int_y[0].IN0
+AddSubCtrl => int_y[1].IN0
+AddSubCtrl => int_y[2].IN0
+AddSubCtrl => int_y[3].IN0
+AddSubCtrl => int_y[4].IN0
+AddSubCtrl => int_y[5].IN0
+AddSubCtrl => int_y[6].IN0
+AddSubCtrl => int_y[7].IN0
+AddSubCtrl => int_y[8].IN0
+AddSubCtrl => int_y[9].IN0
+AddSubCtrl => int_y[10].IN0
+AddSubCtrl => int_y[11].IN0
+AddSubCtrl => int_y[12].IN0
+AddSubCtrl => int_y[13].IN0
+AddSubCtrl => int_y[14].IN0
+AddSubCtrl => int_y[15].IN0
+AddSubCtrl => int_y[16].IN0
+AddSubCtrl => int_y[17].IN0
+AddSubCtrl => int_y[18].IN0
+AddSubCtrl => int_y[19].IN0
+AddSubCtrl => int_y[20].IN0
+AddSubCtrl => int_y[21].IN0
+AddSubCtrl => int_y[22].IN0
+AddSubCtrl => int_y[23].IN0
+AddSubCtrl => int_y[24].IN0
+AddSubCtrl => int_y[25].IN0
+AddSubCtrl => int_y[26].IN0
+AddSubCtrl => int_y[27].IN0
+AddSubCtrl => int_y[28].IN0
+AddSubCtrl => int_y[29].IN0
+AddSubCtrl => int_y[30].IN0
+AddSubCtrl => int_y[31].IN0
+AddSubCtrl => oneBitAdder:GEN_ADDER:0:gen_OneBitAdders.i_CarryIn
+x[0] => oneBitAdder:GEN_ADDER:0:gen_OneBitAdders.i_Xi
+x[1] => oneBitAdder:GEN_ADDER:1:gen_OneBitAdders.i_Xi
+x[2] => oneBitAdder:GEN_ADDER:2:gen_OneBitAdders.i_Xi
+x[3] => oneBitAdder:GEN_ADDER:3:gen_OneBitAdders.i_Xi
+x[4] => oneBitAdder:GEN_ADDER:4:gen_OneBitAdders.i_Xi
+x[5] => oneBitAdder:GEN_ADDER:5:gen_OneBitAdders.i_Xi
+x[6] => oneBitAdder:GEN_ADDER:6:gen_OneBitAdders.i_Xi
+x[7] => oneBitAdder:GEN_ADDER:7:gen_OneBitAdders.i_Xi
+x[8] => oneBitAdder:GEN_ADDER:8:gen_OneBitAdders.i_Xi
+x[9] => oneBitAdder:GEN_ADDER:9:gen_OneBitAdders.i_Xi
+x[10] => oneBitAdder:GEN_ADDER:10:gen_OneBitAdders.i_Xi
+x[11] => oneBitAdder:GEN_ADDER:11:gen_OneBitAdders.i_Xi
+x[12] => oneBitAdder:GEN_ADDER:12:gen_OneBitAdders.i_Xi
+x[13] => oneBitAdder:GEN_ADDER:13:gen_OneBitAdders.i_Xi
+x[14] => oneBitAdder:GEN_ADDER:14:gen_OneBitAdders.i_Xi
+x[15] => oneBitAdder:GEN_ADDER:15:gen_OneBitAdders.i_Xi
+x[16] => oneBitAdder:GEN_ADDER:16:gen_OneBitAdders.i_Xi
+x[17] => oneBitAdder:GEN_ADDER:17:gen_OneBitAdders.i_Xi
+x[18] => oneBitAdder:GEN_ADDER:18:gen_OneBitAdders.i_Xi
+x[19] => oneBitAdder:GEN_ADDER:19:gen_OneBitAdders.i_Xi
+x[20] => oneBitAdder:GEN_ADDER:20:gen_OneBitAdders.i_Xi
+x[21] => oneBitAdder:GEN_ADDER:21:gen_OneBitAdders.i_Xi
+x[22] => oneBitAdder:GEN_ADDER:22:gen_OneBitAdders.i_Xi
+x[23] => oneBitAdder:GEN_ADDER:23:gen_OneBitAdders.i_Xi
+x[24] => oneBitAdder:GEN_ADDER:24:gen_OneBitAdders.i_Xi
+x[25] => oneBitAdder:GEN_ADDER:25:gen_OneBitAdders.i_Xi
+x[26] => oneBitAdder:GEN_ADDER:26:gen_OneBitAdders.i_Xi
+x[27] => oneBitAdder:GEN_ADDER:27:gen_OneBitAdders.i_Xi
+x[28] => oneBitAdder:GEN_ADDER:28:gen_OneBitAdders.i_Xi
+x[29] => oneBitAdder:GEN_ADDER:29:gen_OneBitAdders.i_Xi
+x[30] => oneBitAdder:GEN_ADDER:30:gen_OneBitAdders.i_Xi
+x[31] => oneBitAdder:GEN_ADDER:31:gen_OneBitAdders.i_Xi
+y[0] => int_y[0].IN1
+y[1] => int_y[1].IN1
+y[2] => int_y[2].IN1
+y[3] => int_y[3].IN1
+y[4] => int_y[4].IN1
+y[5] => int_y[5].IN1
+y[6] => int_y[6].IN1
+y[7] => int_y[7].IN1
+y[8] => int_y[8].IN1
+y[9] => int_y[9].IN1
+y[10] => int_y[10].IN1
+y[11] => int_y[11].IN1
+y[12] => int_y[12].IN1
+y[13] => int_y[13].IN1
+y[14] => int_y[14].IN1
+y[15] => int_y[15].IN1
+y[16] => int_y[16].IN1
+y[17] => int_y[17].IN1
+y[18] => int_y[18].IN1
+y[19] => int_y[19].IN1
+y[20] => int_y[20].IN1
+y[21] => int_y[21].IN1
+y[22] => int_y[22].IN1
+y[23] => int_y[23].IN1
+y[24] => int_y[24].IN1
+y[25] => int_y[25].IN1
+y[26] => int_y[26].IN1
+y[27] => int_y[27].IN1
+y[28] => int_y[28].IN1
+y[29] => int_y[29].IN1
+y[30] => int_y[30].IN1
+y[31] => int_y[31].IN1
+Sum[0] <= oneBitAdder:GEN_ADDER:0:gen_OneBitAdders.o_Sum
+Sum[1] <= oneBitAdder:GEN_ADDER:1:gen_OneBitAdders.o_Sum
+Sum[2] <= oneBitAdder:GEN_ADDER:2:gen_OneBitAdders.o_Sum
+Sum[3] <= oneBitAdder:GEN_ADDER:3:gen_OneBitAdders.o_Sum
+Sum[4] <= oneBitAdder:GEN_ADDER:4:gen_OneBitAdders.o_Sum
+Sum[5] <= oneBitAdder:GEN_ADDER:5:gen_OneBitAdders.o_Sum
+Sum[6] <= oneBitAdder:GEN_ADDER:6:gen_OneBitAdders.o_Sum
+Sum[7] <= oneBitAdder:GEN_ADDER:7:gen_OneBitAdders.o_Sum
+Sum[8] <= oneBitAdder:GEN_ADDER:8:gen_OneBitAdders.o_Sum
+Sum[9] <= oneBitAdder:GEN_ADDER:9:gen_OneBitAdders.o_Sum
+Sum[10] <= oneBitAdder:GEN_ADDER:10:gen_OneBitAdders.o_Sum
+Sum[11] <= oneBitAdder:GEN_ADDER:11:gen_OneBitAdders.o_Sum
+Sum[12] <= oneBitAdder:GEN_ADDER:12:gen_OneBitAdders.o_Sum
+Sum[13] <= oneBitAdder:GEN_ADDER:13:gen_OneBitAdders.o_Sum
+Sum[14] <= oneBitAdder:GEN_ADDER:14:gen_OneBitAdders.o_Sum
+Sum[15] <= oneBitAdder:GEN_ADDER:15:gen_OneBitAdders.o_Sum
+Sum[16] <= oneBitAdder:GEN_ADDER:16:gen_OneBitAdders.o_Sum
+Sum[17] <= oneBitAdder:GEN_ADDER:17:gen_OneBitAdders.o_Sum
+Sum[18] <= oneBitAdder:GEN_ADDER:18:gen_OneBitAdders.o_Sum
+Sum[19] <= oneBitAdder:GEN_ADDER:19:gen_OneBitAdders.o_Sum
+Sum[20] <= oneBitAdder:GEN_ADDER:20:gen_OneBitAdders.o_Sum
+Sum[21] <= oneBitAdder:GEN_ADDER:21:gen_OneBitAdders.o_Sum
+Sum[22] <= oneBitAdder:GEN_ADDER:22:gen_OneBitAdders.o_Sum
+Sum[23] <= oneBitAdder:GEN_ADDER:23:gen_OneBitAdders.o_Sum
+Sum[24] <= oneBitAdder:GEN_ADDER:24:gen_OneBitAdders.o_Sum
+Sum[25] <= oneBitAdder:GEN_ADDER:25:gen_OneBitAdders.o_Sum
+Sum[26] <= oneBitAdder:GEN_ADDER:26:gen_OneBitAdders.o_Sum
+Sum[27] <= oneBitAdder:GEN_ADDER:27:gen_OneBitAdders.o_Sum
+Sum[28] <= oneBitAdder:GEN_ADDER:28:gen_OneBitAdders.o_Sum
+Sum[29] <= oneBitAdder:GEN_ADDER:29:gen_OneBitAdders.o_Sum
+Sum[30] <= oneBitAdder:GEN_ADDER:30:gen_OneBitAdders.o_Sum
+Sum[31] <= oneBitAdder:GEN_ADDER:31:gen_OneBitAdders.o_Sum
+CarryOut <= oneBitAdder:GEN_ADDER:31:gen_OneBitAdders.o_CarryOut
+OverflowOut <= OverflowOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:0:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:1:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:2:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:3:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:4:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:5:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:6:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:7:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:8:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:9:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:10:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:11:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:12:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:13:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:14:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:15:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:16:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:17:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:18:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:19:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:20:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:21:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:22:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:23:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:24:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:25:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:26:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:27:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:28:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:29:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:30:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AdderSubber_nBit:Adder_Branch|oneBitAdder:\GEN_ADDER:31:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|slj_26_28:slj_inst
+i_in[0] => o_out[2].DATAIN
+i_in[1] => o_out[3].DATAIN
+i_in[2] => o_out[4].DATAIN
+i_in[3] => o_out[5].DATAIN
+i_in[4] => o_out[6].DATAIN
+i_in[5] => o_out[7].DATAIN
+i_in[6] => o_out[8].DATAIN
+i_in[7] => o_out[9].DATAIN
+i_in[8] => o_out[10].DATAIN
+i_in[9] => o_out[11].DATAIN
+i_in[10] => o_out[12].DATAIN
+i_in[11] => o_out[13].DATAIN
+i_in[12] => o_out[14].DATAIN
+i_in[13] => o_out[15].DATAIN
+i_in[14] => o_out[16].DATAIN
+i_in[15] => o_out[17].DATAIN
+i_in[16] => o_out[18].DATAIN
+i_in[17] => o_out[19].DATAIN
+i_in[18] => o_out[20].DATAIN
+i_in[19] => o_out[21].DATAIN
+i_in[20] => o_out[22].DATAIN
+i_in[21] => o_out[23].DATAIN
+i_in[22] => o_out[24].DATAIN
+i_in[23] => o_out[25].DATAIN
+i_in[24] => o_out[26].DATAIN
+i_in[25] => o_out[27].DATAIN
+o_out[0] <= <GND>
+o_out[1] <= <GND>
+o_out[2] <= i_in[0].DB_MAX_OUTPUT_PORT_TYPE
+o_out[3] <= i_in[1].DB_MAX_OUTPUT_PORT_TYPE
+o_out[4] <= i_in[2].DB_MAX_OUTPUT_PORT_TYPE
+o_out[5] <= i_in[3].DB_MAX_OUTPUT_PORT_TYPE
+o_out[6] <= i_in[4].DB_MAX_OUTPUT_PORT_TYPE
+o_out[7] <= i_in[5].DB_MAX_OUTPUT_PORT_TYPE
+o_out[8] <= i_in[6].DB_MAX_OUTPUT_PORT_TYPE
+o_out[9] <= i_in[7].DB_MAX_OUTPUT_PORT_TYPE
+o_out[10] <= i_in[8].DB_MAX_OUTPUT_PORT_TYPE
+o_out[11] <= i_in[9].DB_MAX_OUTPUT_PORT_TYPE
+o_out[12] <= i_in[10].DB_MAX_OUTPUT_PORT_TYPE
+o_out[13] <= i_in[11].DB_MAX_OUTPUT_PORT_TYPE
+o_out[14] <= i_in[12].DB_MAX_OUTPUT_PORT_TYPE
+o_out[15] <= i_in[13].DB_MAX_OUTPUT_PORT_TYPE
+o_out[16] <= i_in[14].DB_MAX_OUTPUT_PORT_TYPE
+o_out[17] <= i_in[15].DB_MAX_OUTPUT_PORT_TYPE
+o_out[18] <= i_in[16].DB_MAX_OUTPUT_PORT_TYPE
+o_out[19] <= i_in[17].DB_MAX_OUTPUT_PORT_TYPE
+o_out[20] <= i_in[18].DB_MAX_OUTPUT_PORT_TYPE
+o_out[21] <= i_in[19].DB_MAX_OUTPUT_PORT_TYPE
+o_out[22] <= i_in[20].DB_MAX_OUTPUT_PORT_TYPE
+o_out[23] <= i_in[21].DB_MAX_OUTPUT_PORT_TYPE
+o_out[24] <= i_in[22].DB_MAX_OUTPUT_PORT_TYPE
+o_out[25] <= i_in[23].DB_MAX_OUTPUT_PORT_TYPE
+o_out[26] <= i_in[24].DB_MAX_OUTPUT_PORT_TYPE
+o_out[27] <= i_in[25].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|ControlPath:ctrl_unit
+OpCode[0] => isLW.IN1
+OpCode[0] => isSW.IN1
+OpCode[0] => RType.IN1
+OpCode[0] => isJump.IN1
+OpCode[0] => isBEQ.IN1
+OpCode[1] => isLW.IN1
+OpCode[1] => isSW.IN1
+OpCode[1] => isJump.IN1
+OpCode[1] => RType.IN1
+OpCode[1] => isBEQ.IN1
+OpCode[2] => isBEQ.IN1
+OpCode[2] => RType.IN1
+OpCode[2] => isLW.IN1
+OpCode[2] => isSW.IN1
+OpCode[3] => isSW.IN1
+OpCode[3] => RType.IN1
+OpCode[3] => isLW.IN1
+OpCode[4] => RType.IN0
+OpCode[4] => isLW.IN0
+OpCode[5] => isLW.IN1
+OpCode[5] => RType.IN1
+RegDst <= RType.DB_MAX_OUTPUT_PORT_TYPE
+Jump <= isJump.DB_MAX_OUTPUT_PORT_TYPE
+Branch <= isBEQ.DB_MAX_OUTPUT_PORT_TYPE
+MemRead <= isLW.DB_MAX_OUTPUT_PORT_TYPE
+MemToReg <= isLW.DB_MAX_OUTPUT_PORT_TYPE
+AluOP[0] <= isBEQ.DB_MAX_OUTPUT_PORT_TYPE
+AluOP[1] <= RType.DB_MAX_OUTPUT_PORT_TYPE
+MemWrite <= isSW.DB_MAX_OUTPUT_PORT_TYPE
+AluSrc <= AluSrc.DB_MAX_OUTPUT_PORT_TYPE
+RegWrite <= RegWrite.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|MUX4v1_32bit:Mux_PC
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_b.IN0
+sel[0] => and_d.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[0] => and_a.IN0
+sel[0] => and_c.IN0
+sel[1] => and_c[0].IN1
+sel[1] => and_d[0].IN1
+sel[1] => and_c[1].IN1
+sel[1] => and_d[1].IN1
+sel[1] => and_c[2].IN1
+sel[1] => and_d[2].IN1
+sel[1] => and_c[3].IN1
+sel[1] => and_d[3].IN1
+sel[1] => and_c[4].IN1
+sel[1] => and_d[4].IN1
+sel[1] => and_c[5].IN1
+sel[1] => and_d[5].IN1
+sel[1] => and_c[6].IN1
+sel[1] => and_d[6].IN1
+sel[1] => and_c[7].IN1
+sel[1] => and_d[7].IN1
+sel[1] => and_c[8].IN1
+sel[1] => and_d[8].IN1
+sel[1] => and_c[9].IN1
+sel[1] => and_d[9].IN1
+sel[1] => and_c[10].IN1
+sel[1] => and_d[10].IN1
+sel[1] => and_c[11].IN1
+sel[1] => and_d[11].IN1
+sel[1] => and_c[12].IN1
+sel[1] => and_d[12].IN1
+sel[1] => and_c[13].IN1
+sel[1] => and_d[13].IN1
+sel[1] => and_c[14].IN1
+sel[1] => and_d[14].IN1
+sel[1] => and_c[15].IN1
+sel[1] => and_d[15].IN1
+sel[1] => and_c[16].IN1
+sel[1] => and_d[16].IN1
+sel[1] => and_c[17].IN1
+sel[1] => and_d[17].IN1
+sel[1] => and_c[18].IN1
+sel[1] => and_d[18].IN1
+sel[1] => and_c[19].IN1
+sel[1] => and_d[19].IN1
+sel[1] => and_c[20].IN1
+sel[1] => and_d[20].IN1
+sel[1] => and_c[21].IN1
+sel[1] => and_d[21].IN1
+sel[1] => and_c[22].IN1
+sel[1] => and_d[22].IN1
+sel[1] => and_c[23].IN1
+sel[1] => and_d[23].IN1
+sel[1] => and_c[24].IN1
+sel[1] => and_d[24].IN1
+sel[1] => and_c[25].IN1
+sel[1] => and_d[25].IN1
+sel[1] => and_c[26].IN1
+sel[1] => and_d[26].IN1
+sel[1] => and_c[27].IN1
+sel[1] => and_d[27].IN1
+sel[1] => and_c[28].IN1
+sel[1] => and_d[28].IN1
+sel[1] => and_c[29].IN1
+sel[1] => and_d[29].IN1
+sel[1] => and_c[30].IN1
+sel[1] => and_d[30].IN1
+sel[1] => and_c[31].IN1
+sel[1] => and_d[31].IN1
+sel[1] => and_a[0].IN1
+sel[1] => and_b[0].IN1
+sel[1] => and_a[1].IN1
+sel[1] => and_b[1].IN1
+sel[1] => and_a[2].IN1
+sel[1] => and_b[2].IN1
+sel[1] => and_a[3].IN1
+sel[1] => and_b[3].IN1
+sel[1] => and_a[4].IN1
+sel[1] => and_b[4].IN1
+sel[1] => and_a[5].IN1
+sel[1] => and_b[5].IN1
+sel[1] => and_a[6].IN1
+sel[1] => and_b[6].IN1
+sel[1] => and_a[7].IN1
+sel[1] => and_b[7].IN1
+sel[1] => and_a[8].IN1
+sel[1] => and_b[8].IN1
+sel[1] => and_a[9].IN1
+sel[1] => and_b[9].IN1
+sel[1] => and_a[10].IN1
+sel[1] => and_b[10].IN1
+sel[1] => and_a[11].IN1
+sel[1] => and_b[11].IN1
+sel[1] => and_a[12].IN1
+sel[1] => and_b[12].IN1
+sel[1] => and_a[13].IN1
+sel[1] => and_b[13].IN1
+sel[1] => and_a[14].IN1
+sel[1] => and_b[14].IN1
+sel[1] => and_a[15].IN1
+sel[1] => and_b[15].IN1
+sel[1] => and_a[16].IN1
+sel[1] => and_b[16].IN1
+sel[1] => and_a[17].IN1
+sel[1] => and_b[17].IN1
+sel[1] => and_a[18].IN1
+sel[1] => and_b[18].IN1
+sel[1] => and_a[19].IN1
+sel[1] => and_b[19].IN1
+sel[1] => and_a[20].IN1
+sel[1] => and_b[20].IN1
+sel[1] => and_a[21].IN1
+sel[1] => and_b[21].IN1
+sel[1] => and_a[22].IN1
+sel[1] => and_b[22].IN1
+sel[1] => and_a[23].IN1
+sel[1] => and_b[23].IN1
+sel[1] => and_a[24].IN1
+sel[1] => and_b[24].IN1
+sel[1] => and_a[25].IN1
+sel[1] => and_b[25].IN1
+sel[1] => and_a[26].IN1
+sel[1] => and_b[26].IN1
+sel[1] => and_a[27].IN1
+sel[1] => and_b[27].IN1
+sel[1] => and_a[28].IN1
+sel[1] => and_b[28].IN1
+sel[1] => and_a[29].IN1
+sel[1] => and_b[29].IN1
+sel[1] => and_a[30].IN1
+sel[1] => and_b[30].IN1
+sel[1] => and_a[31].IN1
+sel[1] => and_b[31].IN1
+a[0] => and_a.IN1
+a[1] => and_a.IN1
+a[2] => and_a.IN1
+a[3] => and_a.IN1
+a[4] => and_a.IN1
+a[5] => and_a.IN1
+a[6] => and_a.IN1
+a[7] => and_a.IN1
+a[8] => and_a.IN1
+a[9] => and_a.IN1
+a[10] => and_a.IN1
+a[11] => and_a.IN1
+a[12] => and_a.IN1
+a[13] => and_a.IN1
+a[14] => and_a.IN1
+a[15] => and_a.IN1
+a[16] => and_a.IN1
+a[17] => and_a.IN1
+a[18] => and_a.IN1
+a[19] => and_a.IN1
+a[20] => and_a.IN1
+a[21] => and_a.IN1
+a[22] => and_a.IN1
+a[23] => and_a.IN1
+a[24] => and_a.IN1
+a[25] => and_a.IN1
+a[26] => and_a.IN1
+a[27] => and_a.IN1
+a[28] => and_a.IN1
+a[29] => and_a.IN1
+a[30] => and_a.IN1
+a[31] => and_a.IN1
+b[0] => and_b.IN1
+b[1] => and_b.IN1
+b[2] => and_b.IN1
+b[3] => and_b.IN1
+b[4] => and_b.IN1
+b[5] => and_b.IN1
+b[6] => and_b.IN1
+b[7] => and_b.IN1
+b[8] => and_b.IN1
+b[9] => and_b.IN1
+b[10] => and_b.IN1
+b[11] => and_b.IN1
+b[12] => and_b.IN1
+b[13] => and_b.IN1
+b[14] => and_b.IN1
+b[15] => and_b.IN1
+b[16] => and_b.IN1
+b[17] => and_b.IN1
+b[18] => and_b.IN1
+b[19] => and_b.IN1
+b[20] => and_b.IN1
+b[21] => and_b.IN1
+b[22] => and_b.IN1
+b[23] => and_b.IN1
+b[24] => and_b.IN1
+b[25] => and_b.IN1
+b[26] => and_b.IN1
+b[27] => and_b.IN1
+b[28] => and_b.IN1
+b[29] => and_b.IN1
+b[30] => and_b.IN1
+b[31] => and_b.IN1
+c[0] => and_c.IN1
+c[1] => and_c.IN1
+c[2] => and_c.IN1
+c[3] => and_c.IN1
+c[4] => and_c.IN1
+c[5] => and_c.IN1
+c[6] => and_c.IN1
+c[7] => and_c.IN1
+c[8] => and_c.IN1
+c[9] => and_c.IN1
+c[10] => and_c.IN1
+c[11] => and_c.IN1
+c[12] => and_c.IN1
+c[13] => and_c.IN1
+c[14] => and_c.IN1
+c[15] => and_c.IN1
+c[16] => and_c.IN1
+c[17] => and_c.IN1
+c[18] => and_c.IN1
+c[19] => and_c.IN1
+c[20] => and_c.IN1
+c[21] => and_c.IN1
+c[22] => and_c.IN1
+c[23] => and_c.IN1
+c[24] => and_c.IN1
+c[25] => and_c.IN1
+c[26] => and_c.IN1
+c[27] => and_c.IN1
+c[28] => and_c.IN1
+c[29] => and_c.IN1
+c[30] => and_c.IN1
+c[31] => and_c.IN1
+d[0] => and_d.IN1
+d[1] => and_d.IN1
+d[2] => and_d.IN1
+d[3] => and_d.IN1
+d[4] => and_d.IN1
+d[5] => and_d.IN1
+d[6] => and_d.IN1
+d[7] => and_d.IN1
+d[8] => and_d.IN1
+d[9] => and_d.IN1
+d[10] => and_d.IN1
+d[11] => and_d.IN1
+d[12] => and_d.IN1
+d[13] => and_d.IN1
+d[14] => and_d.IN1
+d[15] => and_d.IN1
+d[16] => and_d.IN1
+d[17] => and_d.IN1
+d[18] => and_d.IN1
+d[19] => and_d.IN1
+d[20] => and_d.IN1
+d[21] => and_d.IN1
+d[22] => and_d.IN1
+d[23] => and_d.IN1
+d[24] => and_d.IN1
+d[25] => and_d.IN1
+d[26] => and_d.IN1
+d[27] => and_d.IN1
+d[28] => and_d.IN1
+d[29] => and_d.IN1
+d[30] => and_d.IN1
+d[31] => and_d.IN1
+z[0] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[1] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[2] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[3] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[4] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[5] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[6] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[7] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[8] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[9] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[10] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[11] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[12] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[13] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[14] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[15] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[16] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[17] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[18] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[19] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[20] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[21] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[22] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[23] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[24] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[25] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[26] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[27] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[28] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[29] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[30] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[31] <= z.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|MUX2v1_5bit:Mux_RegDst
+sel => and_b[0].IN0
+sel => and_b[1].IN0
+sel => and_b[2].IN0
+sel => and_b[3].IN0
+sel => and_b[4].IN0
+sel => and_a[0].IN0
+sel => and_a[1].IN0
+sel => and_a[2].IN0
+sel => and_a[3].IN0
+sel => and_a[4].IN0
+a[0] => and_a[0].IN1
+a[1] => and_a[1].IN1
+a[2] => and_a[2].IN1
+a[3] => and_a[3].IN1
+a[4] => and_a[4].IN1
+b[0] => and_b[0].IN1
+b[1] => and_b[1].IN1
+b[2] => and_b[2].IN1
+b[3] => and_b[3].IN1
+b[4] => and_b[4].IN1
+z[0] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[1] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[2] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[3] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[4] <= z.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file
+clock => Register_8bit:aReg.Clk
+clock => Register_8bit:bReg.Clk
+clock => Register_8bit:cReg.Clk
+clock => Register_8bit:dReg.Clk
+clock => Register_8bit:eReg.Clk
+clock => Register_8bit:fReg.Clk
+clock => Register_8bit:gReg.Clk
+clock => Register_8bit:hReg.Clk
+reset => Register_8bit:aReg.reset
+reset => Register_8bit:bReg.reset
+reset => Register_8bit:cReg.reset
+reset => Register_8bit:dReg.reset
+reset => Register_8bit:eReg.reset
+reset => Register_8bit:fReg.reset
+reset => Register_8bit:gReg.reset
+reset => Register_8bit:hReg.reset
+read_reg1[0] => Equal0.IN2
+read_reg1[0] => Equal1.IN4
+read_reg1[0] => Equal2.IN3
+read_reg1[0] => Equal3.IN4
+read_reg1[0] => Equal4.IN3
+read_reg1[0] => Equal5.IN4
+read_reg1[0] => Equal6.IN4
+read_reg1[1] => Equal0.IN4
+read_reg1[1] => Equal1.IN2
+read_reg1[1] => Equal2.IN2
+read_reg1[1] => Equal3.IN3
+read_reg1[1] => Equal4.IN4
+read_reg1[1] => Equal5.IN3
+read_reg1[1] => Equal6.IN3
+read_reg1[2] => Equal0.IN3
+read_reg1[2] => Equal1.IN3
+read_reg1[2] => Equal2.IN4
+read_reg1[2] => Equal3.IN2
+read_reg1[2] => Equal4.IN2
+read_reg1[2] => Equal5.IN2
+read_reg1[2] => Equal6.IN2
+read_reg1[3] => Equal0.IN1
+read_reg1[3] => Equal1.IN1
+read_reg1[3] => Equal2.IN1
+read_reg1[3] => Equal3.IN1
+read_reg1[3] => Equal4.IN1
+read_reg1[3] => Equal5.IN1
+read_reg1[3] => Equal6.IN1
+read_reg1[4] => Equal0.IN0
+read_reg1[4] => Equal1.IN0
+read_reg1[4] => Equal2.IN0
+read_reg1[4] => Equal3.IN0
+read_reg1[4] => Equal4.IN0
+read_reg1[4] => Equal5.IN0
+read_reg1[4] => Equal6.IN0
+read_reg2[0] => Equal7.IN2
+read_reg2[0] => Equal8.IN4
+read_reg2[0] => Equal9.IN3
+read_reg2[0] => Equal10.IN4
+read_reg2[0] => Equal11.IN3
+read_reg2[0] => Equal12.IN4
+read_reg2[0] => Equal13.IN4
+read_reg2[1] => Equal7.IN4
+read_reg2[1] => Equal8.IN2
+read_reg2[1] => Equal9.IN2
+read_reg2[1] => Equal10.IN3
+read_reg2[1] => Equal11.IN4
+read_reg2[1] => Equal12.IN3
+read_reg2[1] => Equal13.IN3
+read_reg2[2] => Equal7.IN3
+read_reg2[2] => Equal8.IN3
+read_reg2[2] => Equal9.IN4
+read_reg2[2] => Equal10.IN2
+read_reg2[2] => Equal11.IN2
+read_reg2[2] => Equal12.IN2
+read_reg2[2] => Equal13.IN2
+read_reg2[3] => Equal7.IN1
+read_reg2[3] => Equal8.IN1
+read_reg2[3] => Equal9.IN1
+read_reg2[3] => Equal10.IN1
+read_reg2[3] => Equal11.IN1
+read_reg2[3] => Equal12.IN1
+read_reg2[3] => Equal13.IN1
+read_reg2[4] => Equal7.IN0
+read_reg2[4] => Equal8.IN0
+read_reg2[4] => Equal9.IN0
+read_reg2[4] => Equal10.IN0
+read_reg2[4] => Equal11.IN0
+read_reg2[4] => Equal12.IN0
+read_reg2[4] => Equal13.IN0
+write_reg[0] => Decoder_5v32_8bit:Decoder.i_input[0]
+write_reg[1] => Decoder_5v32_8bit:Decoder.i_input[1]
+write_reg[2] => Decoder_5v32_8bit:Decoder.i_input[2]
+write_reg[3] => Decoder_5v32_8bit:Decoder.i_input[3]
+write_reg[4] => Decoder_5v32_8bit:Decoder.i_input[4]
+write_data[0] => Register_8bit:aReg.Data_IN[0]
+write_data[0] => Register_8bit:bReg.Data_IN[0]
+write_data[0] => Register_8bit:cReg.Data_IN[0]
+write_data[0] => Register_8bit:dReg.Data_IN[0]
+write_data[0] => Register_8bit:eReg.Data_IN[0]
+write_data[0] => Register_8bit:fReg.Data_IN[0]
+write_data[0] => Register_8bit:gReg.Data_IN[0]
+write_data[0] => Register_8bit:hReg.Data_IN[0]
+write_data[1] => Register_8bit:aReg.Data_IN[1]
+write_data[1] => Register_8bit:bReg.Data_IN[1]
+write_data[1] => Register_8bit:cReg.Data_IN[1]
+write_data[1] => Register_8bit:dReg.Data_IN[1]
+write_data[1] => Register_8bit:eReg.Data_IN[1]
+write_data[1] => Register_8bit:fReg.Data_IN[1]
+write_data[1] => Register_8bit:gReg.Data_IN[1]
+write_data[1] => Register_8bit:hReg.Data_IN[1]
+write_data[2] => Register_8bit:aReg.Data_IN[2]
+write_data[2] => Register_8bit:bReg.Data_IN[2]
+write_data[2] => Register_8bit:cReg.Data_IN[2]
+write_data[2] => Register_8bit:dReg.Data_IN[2]
+write_data[2] => Register_8bit:eReg.Data_IN[2]
+write_data[2] => Register_8bit:fReg.Data_IN[2]
+write_data[2] => Register_8bit:gReg.Data_IN[2]
+write_data[2] => Register_8bit:hReg.Data_IN[2]
+write_data[3] => Register_8bit:aReg.Data_IN[3]
+write_data[3] => Register_8bit:bReg.Data_IN[3]
+write_data[3] => Register_8bit:cReg.Data_IN[3]
+write_data[3] => Register_8bit:dReg.Data_IN[3]
+write_data[3] => Register_8bit:eReg.Data_IN[3]
+write_data[3] => Register_8bit:fReg.Data_IN[3]
+write_data[3] => Register_8bit:gReg.Data_IN[3]
+write_data[3] => Register_8bit:hReg.Data_IN[3]
+write_data[4] => Register_8bit:aReg.Data_IN[4]
+write_data[4] => Register_8bit:bReg.Data_IN[4]
+write_data[4] => Register_8bit:cReg.Data_IN[4]
+write_data[4] => Register_8bit:dReg.Data_IN[4]
+write_data[4] => Register_8bit:eReg.Data_IN[4]
+write_data[4] => Register_8bit:fReg.Data_IN[4]
+write_data[4] => Register_8bit:gReg.Data_IN[4]
+write_data[4] => Register_8bit:hReg.Data_IN[4]
+write_data[5] => Register_8bit:aReg.Data_IN[5]
+write_data[5] => Register_8bit:bReg.Data_IN[5]
+write_data[5] => Register_8bit:cReg.Data_IN[5]
+write_data[5] => Register_8bit:dReg.Data_IN[5]
+write_data[5] => Register_8bit:eReg.Data_IN[5]
+write_data[5] => Register_8bit:fReg.Data_IN[5]
+write_data[5] => Register_8bit:gReg.Data_IN[5]
+write_data[5] => Register_8bit:hReg.Data_IN[5]
+write_data[6] => Register_8bit:aReg.Data_IN[6]
+write_data[6] => Register_8bit:bReg.Data_IN[6]
+write_data[6] => Register_8bit:cReg.Data_IN[6]
+write_data[6] => Register_8bit:dReg.Data_IN[6]
+write_data[6] => Register_8bit:eReg.Data_IN[6]
+write_data[6] => Register_8bit:fReg.Data_IN[6]
+write_data[6] => Register_8bit:gReg.Data_IN[6]
+write_data[6] => Register_8bit:hReg.Data_IN[6]
+write_data[7] => Register_8bit:aReg.Data_IN[7]
+write_data[7] => Register_8bit:bReg.Data_IN[7]
+write_data[7] => Register_8bit:cReg.Data_IN[7]
+write_data[7] => Register_8bit:dReg.Data_IN[7]
+write_data[7] => Register_8bit:eReg.Data_IN[7]
+write_data[7] => Register_8bit:fReg.Data_IN[7]
+write_data[7] => Register_8bit:gReg.Data_IN[7]
+write_data[7] => Register_8bit:hReg.Data_IN[7]
+reg_write => Decoder_5v32_8bit:Decoder.i_enable
+read_data1[0] <= read_data1.DB_MAX_OUTPUT_PORT_TYPE
+read_data1[1] <= read_data1.DB_MAX_OUTPUT_PORT_TYPE
+read_data1[2] <= read_data1.DB_MAX_OUTPUT_PORT_TYPE
+read_data1[3] <= read_data1.DB_MAX_OUTPUT_PORT_TYPE
+read_data1[4] <= read_data1.DB_MAX_OUTPUT_PORT_TYPE
+read_data1[5] <= read_data1.DB_MAX_OUTPUT_PORT_TYPE
+read_data1[6] <= read_data1.DB_MAX_OUTPUT_PORT_TYPE
+read_data1[7] <= read_data1.DB_MAX_OUTPUT_PORT_TYPE
+read_data2[0] <= read_data2.DB_MAX_OUTPUT_PORT_TYPE
+read_data2[1] <= read_data2.DB_MAX_OUTPUT_PORT_TYPE
+read_data2[2] <= read_data2.DB_MAX_OUTPUT_PORT_TYPE
+read_data2[3] <= read_data2.DB_MAX_OUTPUT_PORT_TYPE
+read_data2[4] <= read_data2.DB_MAX_OUTPUT_PORT_TYPE
+read_data2[5] <= read_data2.DB_MAX_OUTPUT_PORT_TYPE
+read_data2[6] <= read_data2.DB_MAX_OUTPUT_PORT_TYPE
+read_data2[7] <= read_data2.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Decoder_5v32_8bit:Decoder
+i_enable => o_output.OUTPUTSELECT
+i_enable => o_output.OUTPUTSELECT
+i_enable => o_output.OUTPUTSELECT
+i_enable => o_output.OUTPUTSELECT
+i_enable => o_output.OUTPUTSELECT
+i_enable => o_output.OUTPUTSELECT
+i_enable => o_output.OUTPUTSELECT
+i_enable => o_output.OUTPUTSELECT
+i_input[0] => Mux0.IN36
+i_input[0] => Mux1.IN36
+i_input[0] => Mux2.IN36
+i_input[0] => Mux3.IN36
+i_input[0] => Mux4.IN36
+i_input[0] => Mux5.IN36
+i_input[0] => Mux6.IN36
+i_input[0] => Mux7.IN36
+i_input[1] => Mux0.IN35
+i_input[1] => Mux1.IN35
+i_input[1] => Mux2.IN35
+i_input[1] => Mux3.IN35
+i_input[1] => Mux4.IN35
+i_input[1] => Mux5.IN35
+i_input[1] => Mux6.IN35
+i_input[1] => Mux7.IN35
+i_input[2] => Mux0.IN34
+i_input[2] => Mux1.IN34
+i_input[2] => Mux2.IN34
+i_input[2] => Mux3.IN34
+i_input[2] => Mux4.IN34
+i_input[2] => Mux5.IN34
+i_input[2] => Mux6.IN34
+i_input[2] => Mux7.IN34
+i_input[3] => Mux0.IN33
+i_input[3] => Mux1.IN33
+i_input[3] => Mux2.IN33
+i_input[3] => Mux3.IN33
+i_input[3] => Mux4.IN33
+i_input[3] => Mux5.IN33
+i_input[3] => Mux6.IN33
+i_input[3] => Mux7.IN33
+i_input[4] => Mux0.IN32
+i_input[4] => Mux1.IN32
+i_input[4] => Mux2.IN32
+i_input[4] => Mux3.IN32
+i_input[4] => Mux4.IN32
+i_input[4] => Mux5.IN32
+i_input[4] => Mux6.IN32
+i_input[4] => Mux7.IN32
+o_output[0] <= o_output.DB_MAX_OUTPUT_PORT_TYPE
+o_output[1] <= o_output.DB_MAX_OUTPUT_PORT_TYPE
+o_output[2] <= o_output.DB_MAX_OUTPUT_PORT_TYPE
+o_output[3] <= o_output.DB_MAX_OUTPUT_PORT_TYPE
+o_output[4] <= o_output.DB_MAX_OUTPUT_PORT_TYPE
+o_output[5] <= o_output.DB_MAX_OUTPUT_PORT_TYPE
+o_output[6] <= o_output.DB_MAX_OUTPUT_PORT_TYPE
+o_output[7] <= o_output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:aReg
+Clk => enardFF_2:byteGen:0:dFF.i_clock
+Clk => enardFF_2:byteGen:1:dFF.i_clock
+Clk => enardFF_2:byteGen:2:dFF.i_clock
+Clk => enardFF_2:byteGen:3:dFF.i_clock
+Clk => enardFF_2:byteGen:4:dFF.i_clock
+Clk => enardFF_2:byteGen:5:dFF.i_clock
+Clk => enardFF_2:byteGen:6:dFF.i_clock
+Clk => enardFF_2:byteGen:7:dFF.i_clock
+enable => enardFF_2:byteGen:0:dFF.i_enable
+enable => enardFF_2:byteGen:1:dFF.i_enable
+enable => enardFF_2:byteGen:2:dFF.i_enable
+enable => enardFF_2:byteGen:3:dFF.i_enable
+enable => enardFF_2:byteGen:4:dFF.i_enable
+enable => enardFF_2:byteGen:5:dFF.i_enable
+enable => enardFF_2:byteGen:6:dFF.i_enable
+enable => enardFF_2:byteGen:7:dFF.i_enable
+reset => enardFF_2:byteGen:0:dFF.i_resetBar
+reset => enardFF_2:byteGen:1:dFF.i_resetBar
+reset => enardFF_2:byteGen:2:dFF.i_resetBar
+reset => enardFF_2:byteGen:3:dFF.i_resetBar
+reset => enardFF_2:byteGen:4:dFF.i_resetBar
+reset => enardFF_2:byteGen:5:dFF.i_resetBar
+reset => enardFF_2:byteGen:6:dFF.i_resetBar
+reset => enardFF_2:byteGen:7:dFF.i_resetBar
+Data_IN[0] => enardFF_2:byteGen:0:dFF.i_d
+Data_IN[1] => enardFF_2:byteGen:1:dFF.i_d
+Data_IN[2] => enardFF_2:byteGen:2:dFF.i_d
+Data_IN[3] => enardFF_2:byteGen:3:dFF.i_d
+Data_IN[4] => enardFF_2:byteGen:4:dFF.i_d
+Data_IN[5] => enardFF_2:byteGen:5:dFF.i_d
+Data_IN[6] => enardFF_2:byteGen:6:dFF.i_d
+Data_IN[7] => enardFF_2:byteGen:7:dFF.i_d
+Data_out[0] <= enardFF_2:byteGen:0:dFF.o_q
+Data_out[1] <= enardFF_2:byteGen:1:dFF.o_q
+Data_out[2] <= enardFF_2:byteGen:2:dFF.o_q
+Data_out[3] <= enardFF_2:byteGen:3:dFF.o_q
+Data_out[4] <= enardFF_2:byteGen:4:dFF.o_q
+Data_out[5] <= enardFF_2:byteGen:5:dFF.o_q
+Data_out[6] <= enardFF_2:byteGen:6:dFF.o_q
+Data_out[7] <= enardFF_2:byteGen:7:dFF.o_q
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:aReg|enARdFF_2:\byteGen:0:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:aReg|enARdFF_2:\byteGen:1:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:aReg|enARdFF_2:\byteGen:2:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:aReg|enARdFF_2:\byteGen:3:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:aReg|enARdFF_2:\byteGen:4:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:aReg|enARdFF_2:\byteGen:5:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:aReg|enARdFF_2:\byteGen:6:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:aReg|enARdFF_2:\byteGen:7:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:bReg
+Clk => enardFF_2:byteGen:0:dFF.i_clock
+Clk => enardFF_2:byteGen:1:dFF.i_clock
+Clk => enardFF_2:byteGen:2:dFF.i_clock
+Clk => enardFF_2:byteGen:3:dFF.i_clock
+Clk => enardFF_2:byteGen:4:dFF.i_clock
+Clk => enardFF_2:byteGen:5:dFF.i_clock
+Clk => enardFF_2:byteGen:6:dFF.i_clock
+Clk => enardFF_2:byteGen:7:dFF.i_clock
+enable => enardFF_2:byteGen:0:dFF.i_enable
+enable => enardFF_2:byteGen:1:dFF.i_enable
+enable => enardFF_2:byteGen:2:dFF.i_enable
+enable => enardFF_2:byteGen:3:dFF.i_enable
+enable => enardFF_2:byteGen:4:dFF.i_enable
+enable => enardFF_2:byteGen:5:dFF.i_enable
+enable => enardFF_2:byteGen:6:dFF.i_enable
+enable => enardFF_2:byteGen:7:dFF.i_enable
+reset => enardFF_2:byteGen:0:dFF.i_resetBar
+reset => enardFF_2:byteGen:1:dFF.i_resetBar
+reset => enardFF_2:byteGen:2:dFF.i_resetBar
+reset => enardFF_2:byteGen:3:dFF.i_resetBar
+reset => enardFF_2:byteGen:4:dFF.i_resetBar
+reset => enardFF_2:byteGen:5:dFF.i_resetBar
+reset => enardFF_2:byteGen:6:dFF.i_resetBar
+reset => enardFF_2:byteGen:7:dFF.i_resetBar
+Data_IN[0] => enardFF_2:byteGen:0:dFF.i_d
+Data_IN[1] => enardFF_2:byteGen:1:dFF.i_d
+Data_IN[2] => enardFF_2:byteGen:2:dFF.i_d
+Data_IN[3] => enardFF_2:byteGen:3:dFF.i_d
+Data_IN[4] => enardFF_2:byteGen:4:dFF.i_d
+Data_IN[5] => enardFF_2:byteGen:5:dFF.i_d
+Data_IN[6] => enardFF_2:byteGen:6:dFF.i_d
+Data_IN[7] => enardFF_2:byteGen:7:dFF.i_d
+Data_out[0] <= enardFF_2:byteGen:0:dFF.o_q
+Data_out[1] <= enardFF_2:byteGen:1:dFF.o_q
+Data_out[2] <= enardFF_2:byteGen:2:dFF.o_q
+Data_out[3] <= enardFF_2:byteGen:3:dFF.o_q
+Data_out[4] <= enardFF_2:byteGen:4:dFF.o_q
+Data_out[5] <= enardFF_2:byteGen:5:dFF.o_q
+Data_out[6] <= enardFF_2:byteGen:6:dFF.o_q
+Data_out[7] <= enardFF_2:byteGen:7:dFF.o_q
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:bReg|enARdFF_2:\byteGen:0:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:bReg|enARdFF_2:\byteGen:1:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:bReg|enARdFF_2:\byteGen:2:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:bReg|enARdFF_2:\byteGen:3:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:bReg|enARdFF_2:\byteGen:4:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:bReg|enARdFF_2:\byteGen:5:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:bReg|enARdFF_2:\byteGen:6:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:bReg|enARdFF_2:\byteGen:7:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:cReg
+Clk => enardFF_2:byteGen:0:dFF.i_clock
+Clk => enardFF_2:byteGen:1:dFF.i_clock
+Clk => enardFF_2:byteGen:2:dFF.i_clock
+Clk => enardFF_2:byteGen:3:dFF.i_clock
+Clk => enardFF_2:byteGen:4:dFF.i_clock
+Clk => enardFF_2:byteGen:5:dFF.i_clock
+Clk => enardFF_2:byteGen:6:dFF.i_clock
+Clk => enardFF_2:byteGen:7:dFF.i_clock
+enable => enardFF_2:byteGen:0:dFF.i_enable
+enable => enardFF_2:byteGen:1:dFF.i_enable
+enable => enardFF_2:byteGen:2:dFF.i_enable
+enable => enardFF_2:byteGen:3:dFF.i_enable
+enable => enardFF_2:byteGen:4:dFF.i_enable
+enable => enardFF_2:byteGen:5:dFF.i_enable
+enable => enardFF_2:byteGen:6:dFF.i_enable
+enable => enardFF_2:byteGen:7:dFF.i_enable
+reset => enardFF_2:byteGen:0:dFF.i_resetBar
+reset => enardFF_2:byteGen:1:dFF.i_resetBar
+reset => enardFF_2:byteGen:2:dFF.i_resetBar
+reset => enardFF_2:byteGen:3:dFF.i_resetBar
+reset => enardFF_2:byteGen:4:dFF.i_resetBar
+reset => enardFF_2:byteGen:5:dFF.i_resetBar
+reset => enardFF_2:byteGen:6:dFF.i_resetBar
+reset => enardFF_2:byteGen:7:dFF.i_resetBar
+Data_IN[0] => enardFF_2:byteGen:0:dFF.i_d
+Data_IN[1] => enardFF_2:byteGen:1:dFF.i_d
+Data_IN[2] => enardFF_2:byteGen:2:dFF.i_d
+Data_IN[3] => enardFF_2:byteGen:3:dFF.i_d
+Data_IN[4] => enardFF_2:byteGen:4:dFF.i_d
+Data_IN[5] => enardFF_2:byteGen:5:dFF.i_d
+Data_IN[6] => enardFF_2:byteGen:6:dFF.i_d
+Data_IN[7] => enardFF_2:byteGen:7:dFF.i_d
+Data_out[0] <= enardFF_2:byteGen:0:dFF.o_q
+Data_out[1] <= enardFF_2:byteGen:1:dFF.o_q
+Data_out[2] <= enardFF_2:byteGen:2:dFF.o_q
+Data_out[3] <= enardFF_2:byteGen:3:dFF.o_q
+Data_out[4] <= enardFF_2:byteGen:4:dFF.o_q
+Data_out[5] <= enardFF_2:byteGen:5:dFF.o_q
+Data_out[6] <= enardFF_2:byteGen:6:dFF.o_q
+Data_out[7] <= enardFF_2:byteGen:7:dFF.o_q
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:cReg|enARdFF_2:\byteGen:0:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:cReg|enARdFF_2:\byteGen:1:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:cReg|enARdFF_2:\byteGen:2:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:cReg|enARdFF_2:\byteGen:3:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:cReg|enARdFF_2:\byteGen:4:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:cReg|enARdFF_2:\byteGen:5:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:cReg|enARdFF_2:\byteGen:6:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:cReg|enARdFF_2:\byteGen:7:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:dReg
+Clk => enardFF_2:byteGen:0:dFF.i_clock
+Clk => enardFF_2:byteGen:1:dFF.i_clock
+Clk => enardFF_2:byteGen:2:dFF.i_clock
+Clk => enardFF_2:byteGen:3:dFF.i_clock
+Clk => enardFF_2:byteGen:4:dFF.i_clock
+Clk => enardFF_2:byteGen:5:dFF.i_clock
+Clk => enardFF_2:byteGen:6:dFF.i_clock
+Clk => enardFF_2:byteGen:7:dFF.i_clock
+enable => enardFF_2:byteGen:0:dFF.i_enable
+enable => enardFF_2:byteGen:1:dFF.i_enable
+enable => enardFF_2:byteGen:2:dFF.i_enable
+enable => enardFF_2:byteGen:3:dFF.i_enable
+enable => enardFF_2:byteGen:4:dFF.i_enable
+enable => enardFF_2:byteGen:5:dFF.i_enable
+enable => enardFF_2:byteGen:6:dFF.i_enable
+enable => enardFF_2:byteGen:7:dFF.i_enable
+reset => enardFF_2:byteGen:0:dFF.i_resetBar
+reset => enardFF_2:byteGen:1:dFF.i_resetBar
+reset => enardFF_2:byteGen:2:dFF.i_resetBar
+reset => enardFF_2:byteGen:3:dFF.i_resetBar
+reset => enardFF_2:byteGen:4:dFF.i_resetBar
+reset => enardFF_2:byteGen:5:dFF.i_resetBar
+reset => enardFF_2:byteGen:6:dFF.i_resetBar
+reset => enardFF_2:byteGen:7:dFF.i_resetBar
+Data_IN[0] => enardFF_2:byteGen:0:dFF.i_d
+Data_IN[1] => enardFF_2:byteGen:1:dFF.i_d
+Data_IN[2] => enardFF_2:byteGen:2:dFF.i_d
+Data_IN[3] => enardFF_2:byteGen:3:dFF.i_d
+Data_IN[4] => enardFF_2:byteGen:4:dFF.i_d
+Data_IN[5] => enardFF_2:byteGen:5:dFF.i_d
+Data_IN[6] => enardFF_2:byteGen:6:dFF.i_d
+Data_IN[7] => enardFF_2:byteGen:7:dFF.i_d
+Data_out[0] <= enardFF_2:byteGen:0:dFF.o_q
+Data_out[1] <= enardFF_2:byteGen:1:dFF.o_q
+Data_out[2] <= enardFF_2:byteGen:2:dFF.o_q
+Data_out[3] <= enardFF_2:byteGen:3:dFF.o_q
+Data_out[4] <= enardFF_2:byteGen:4:dFF.o_q
+Data_out[5] <= enardFF_2:byteGen:5:dFF.o_q
+Data_out[6] <= enardFF_2:byteGen:6:dFF.o_q
+Data_out[7] <= enardFF_2:byteGen:7:dFF.o_q
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:dReg|enARdFF_2:\byteGen:0:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:dReg|enARdFF_2:\byteGen:1:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:dReg|enARdFF_2:\byteGen:2:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:dReg|enARdFF_2:\byteGen:3:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:dReg|enARdFF_2:\byteGen:4:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:dReg|enARdFF_2:\byteGen:5:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:dReg|enARdFF_2:\byteGen:6:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:dReg|enARdFF_2:\byteGen:7:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:eReg
+Clk => enardFF_2:byteGen:0:dFF.i_clock
+Clk => enardFF_2:byteGen:1:dFF.i_clock
+Clk => enardFF_2:byteGen:2:dFF.i_clock
+Clk => enardFF_2:byteGen:3:dFF.i_clock
+Clk => enardFF_2:byteGen:4:dFF.i_clock
+Clk => enardFF_2:byteGen:5:dFF.i_clock
+Clk => enardFF_2:byteGen:6:dFF.i_clock
+Clk => enardFF_2:byteGen:7:dFF.i_clock
+enable => enardFF_2:byteGen:0:dFF.i_enable
+enable => enardFF_2:byteGen:1:dFF.i_enable
+enable => enardFF_2:byteGen:2:dFF.i_enable
+enable => enardFF_2:byteGen:3:dFF.i_enable
+enable => enardFF_2:byteGen:4:dFF.i_enable
+enable => enardFF_2:byteGen:5:dFF.i_enable
+enable => enardFF_2:byteGen:6:dFF.i_enable
+enable => enardFF_2:byteGen:7:dFF.i_enable
+reset => enardFF_2:byteGen:0:dFF.i_resetBar
+reset => enardFF_2:byteGen:1:dFF.i_resetBar
+reset => enardFF_2:byteGen:2:dFF.i_resetBar
+reset => enardFF_2:byteGen:3:dFF.i_resetBar
+reset => enardFF_2:byteGen:4:dFF.i_resetBar
+reset => enardFF_2:byteGen:5:dFF.i_resetBar
+reset => enardFF_2:byteGen:6:dFF.i_resetBar
+reset => enardFF_2:byteGen:7:dFF.i_resetBar
+Data_IN[0] => enardFF_2:byteGen:0:dFF.i_d
+Data_IN[1] => enardFF_2:byteGen:1:dFF.i_d
+Data_IN[2] => enardFF_2:byteGen:2:dFF.i_d
+Data_IN[3] => enardFF_2:byteGen:3:dFF.i_d
+Data_IN[4] => enardFF_2:byteGen:4:dFF.i_d
+Data_IN[5] => enardFF_2:byteGen:5:dFF.i_d
+Data_IN[6] => enardFF_2:byteGen:6:dFF.i_d
+Data_IN[7] => enardFF_2:byteGen:7:dFF.i_d
+Data_out[0] <= enardFF_2:byteGen:0:dFF.o_q
+Data_out[1] <= enardFF_2:byteGen:1:dFF.o_q
+Data_out[2] <= enardFF_2:byteGen:2:dFF.o_q
+Data_out[3] <= enardFF_2:byteGen:3:dFF.o_q
+Data_out[4] <= enardFF_2:byteGen:4:dFF.o_q
+Data_out[5] <= enardFF_2:byteGen:5:dFF.o_q
+Data_out[6] <= enardFF_2:byteGen:6:dFF.o_q
+Data_out[7] <= enardFF_2:byteGen:7:dFF.o_q
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:eReg|enARdFF_2:\byteGen:0:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:eReg|enARdFF_2:\byteGen:1:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:eReg|enARdFF_2:\byteGen:2:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:eReg|enARdFF_2:\byteGen:3:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:eReg|enARdFF_2:\byteGen:4:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:eReg|enARdFF_2:\byteGen:5:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:eReg|enARdFF_2:\byteGen:6:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:eReg|enARdFF_2:\byteGen:7:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:fReg
+Clk => enardFF_2:byteGen:0:dFF.i_clock
+Clk => enardFF_2:byteGen:1:dFF.i_clock
+Clk => enardFF_2:byteGen:2:dFF.i_clock
+Clk => enardFF_2:byteGen:3:dFF.i_clock
+Clk => enardFF_2:byteGen:4:dFF.i_clock
+Clk => enardFF_2:byteGen:5:dFF.i_clock
+Clk => enardFF_2:byteGen:6:dFF.i_clock
+Clk => enardFF_2:byteGen:7:dFF.i_clock
+enable => enardFF_2:byteGen:0:dFF.i_enable
+enable => enardFF_2:byteGen:1:dFF.i_enable
+enable => enardFF_2:byteGen:2:dFF.i_enable
+enable => enardFF_2:byteGen:3:dFF.i_enable
+enable => enardFF_2:byteGen:4:dFF.i_enable
+enable => enardFF_2:byteGen:5:dFF.i_enable
+enable => enardFF_2:byteGen:6:dFF.i_enable
+enable => enardFF_2:byteGen:7:dFF.i_enable
+reset => enardFF_2:byteGen:0:dFF.i_resetBar
+reset => enardFF_2:byteGen:1:dFF.i_resetBar
+reset => enardFF_2:byteGen:2:dFF.i_resetBar
+reset => enardFF_2:byteGen:3:dFF.i_resetBar
+reset => enardFF_2:byteGen:4:dFF.i_resetBar
+reset => enardFF_2:byteGen:5:dFF.i_resetBar
+reset => enardFF_2:byteGen:6:dFF.i_resetBar
+reset => enardFF_2:byteGen:7:dFF.i_resetBar
+Data_IN[0] => enardFF_2:byteGen:0:dFF.i_d
+Data_IN[1] => enardFF_2:byteGen:1:dFF.i_d
+Data_IN[2] => enardFF_2:byteGen:2:dFF.i_d
+Data_IN[3] => enardFF_2:byteGen:3:dFF.i_d
+Data_IN[4] => enardFF_2:byteGen:4:dFF.i_d
+Data_IN[5] => enardFF_2:byteGen:5:dFF.i_d
+Data_IN[6] => enardFF_2:byteGen:6:dFF.i_d
+Data_IN[7] => enardFF_2:byteGen:7:dFF.i_d
+Data_out[0] <= enardFF_2:byteGen:0:dFF.o_q
+Data_out[1] <= enardFF_2:byteGen:1:dFF.o_q
+Data_out[2] <= enardFF_2:byteGen:2:dFF.o_q
+Data_out[3] <= enardFF_2:byteGen:3:dFF.o_q
+Data_out[4] <= enardFF_2:byteGen:4:dFF.o_q
+Data_out[5] <= enardFF_2:byteGen:5:dFF.o_q
+Data_out[6] <= enardFF_2:byteGen:6:dFF.o_q
+Data_out[7] <= enardFF_2:byteGen:7:dFF.o_q
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:fReg|enARdFF_2:\byteGen:0:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:fReg|enARdFF_2:\byteGen:1:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:fReg|enARdFF_2:\byteGen:2:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:fReg|enARdFF_2:\byteGen:3:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:fReg|enARdFF_2:\byteGen:4:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:fReg|enARdFF_2:\byteGen:5:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:fReg|enARdFF_2:\byteGen:6:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:fReg|enARdFF_2:\byteGen:7:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:gReg
+Clk => enardFF_2:byteGen:0:dFF.i_clock
+Clk => enardFF_2:byteGen:1:dFF.i_clock
+Clk => enardFF_2:byteGen:2:dFF.i_clock
+Clk => enardFF_2:byteGen:3:dFF.i_clock
+Clk => enardFF_2:byteGen:4:dFF.i_clock
+Clk => enardFF_2:byteGen:5:dFF.i_clock
+Clk => enardFF_2:byteGen:6:dFF.i_clock
+Clk => enardFF_2:byteGen:7:dFF.i_clock
+enable => enardFF_2:byteGen:0:dFF.i_enable
+enable => enardFF_2:byteGen:1:dFF.i_enable
+enable => enardFF_2:byteGen:2:dFF.i_enable
+enable => enardFF_2:byteGen:3:dFF.i_enable
+enable => enardFF_2:byteGen:4:dFF.i_enable
+enable => enardFF_2:byteGen:5:dFF.i_enable
+enable => enardFF_2:byteGen:6:dFF.i_enable
+enable => enardFF_2:byteGen:7:dFF.i_enable
+reset => enardFF_2:byteGen:0:dFF.i_resetBar
+reset => enardFF_2:byteGen:1:dFF.i_resetBar
+reset => enardFF_2:byteGen:2:dFF.i_resetBar
+reset => enardFF_2:byteGen:3:dFF.i_resetBar
+reset => enardFF_2:byteGen:4:dFF.i_resetBar
+reset => enardFF_2:byteGen:5:dFF.i_resetBar
+reset => enardFF_2:byteGen:6:dFF.i_resetBar
+reset => enardFF_2:byteGen:7:dFF.i_resetBar
+Data_IN[0] => enardFF_2:byteGen:0:dFF.i_d
+Data_IN[1] => enardFF_2:byteGen:1:dFF.i_d
+Data_IN[2] => enardFF_2:byteGen:2:dFF.i_d
+Data_IN[3] => enardFF_2:byteGen:3:dFF.i_d
+Data_IN[4] => enardFF_2:byteGen:4:dFF.i_d
+Data_IN[5] => enardFF_2:byteGen:5:dFF.i_d
+Data_IN[6] => enardFF_2:byteGen:6:dFF.i_d
+Data_IN[7] => enardFF_2:byteGen:7:dFF.i_d
+Data_out[0] <= enardFF_2:byteGen:0:dFF.o_q
+Data_out[1] <= enardFF_2:byteGen:1:dFF.o_q
+Data_out[2] <= enardFF_2:byteGen:2:dFF.o_q
+Data_out[3] <= enardFF_2:byteGen:3:dFF.o_q
+Data_out[4] <= enardFF_2:byteGen:4:dFF.o_q
+Data_out[5] <= enardFF_2:byteGen:5:dFF.o_q
+Data_out[6] <= enardFF_2:byteGen:6:dFF.o_q
+Data_out[7] <= enardFF_2:byteGen:7:dFF.o_q
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:gReg|enARdFF_2:\byteGen:0:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:gReg|enARdFF_2:\byteGen:1:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:gReg|enARdFF_2:\byteGen:2:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:gReg|enARdFF_2:\byteGen:3:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:gReg|enARdFF_2:\byteGen:4:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:gReg|enARdFF_2:\byteGen:5:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:gReg|enARdFF_2:\byteGen:6:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:gReg|enARdFF_2:\byteGen:7:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:hReg
+Clk => enardFF_2:byteGen:0:dFF.i_clock
+Clk => enardFF_2:byteGen:1:dFF.i_clock
+Clk => enardFF_2:byteGen:2:dFF.i_clock
+Clk => enardFF_2:byteGen:3:dFF.i_clock
+Clk => enardFF_2:byteGen:4:dFF.i_clock
+Clk => enardFF_2:byteGen:5:dFF.i_clock
+Clk => enardFF_2:byteGen:6:dFF.i_clock
+Clk => enardFF_2:byteGen:7:dFF.i_clock
+enable => enardFF_2:byteGen:0:dFF.i_enable
+enable => enardFF_2:byteGen:1:dFF.i_enable
+enable => enardFF_2:byteGen:2:dFF.i_enable
+enable => enardFF_2:byteGen:3:dFF.i_enable
+enable => enardFF_2:byteGen:4:dFF.i_enable
+enable => enardFF_2:byteGen:5:dFF.i_enable
+enable => enardFF_2:byteGen:6:dFF.i_enable
+enable => enardFF_2:byteGen:7:dFF.i_enable
+reset => enardFF_2:byteGen:0:dFF.i_resetBar
+reset => enardFF_2:byteGen:1:dFF.i_resetBar
+reset => enardFF_2:byteGen:2:dFF.i_resetBar
+reset => enardFF_2:byteGen:3:dFF.i_resetBar
+reset => enardFF_2:byteGen:4:dFF.i_resetBar
+reset => enardFF_2:byteGen:5:dFF.i_resetBar
+reset => enardFF_2:byteGen:6:dFF.i_resetBar
+reset => enardFF_2:byteGen:7:dFF.i_resetBar
+Data_IN[0] => enardFF_2:byteGen:0:dFF.i_d
+Data_IN[1] => enardFF_2:byteGen:1:dFF.i_d
+Data_IN[2] => enardFF_2:byteGen:2:dFF.i_d
+Data_IN[3] => enardFF_2:byteGen:3:dFF.i_d
+Data_IN[4] => enardFF_2:byteGen:4:dFF.i_d
+Data_IN[5] => enardFF_2:byteGen:5:dFF.i_d
+Data_IN[6] => enardFF_2:byteGen:6:dFF.i_d
+Data_IN[7] => enardFF_2:byteGen:7:dFF.i_d
+Data_out[0] <= enardFF_2:byteGen:0:dFF.o_q
+Data_out[1] <= enardFF_2:byteGen:1:dFF.o_q
+Data_out[2] <= enardFF_2:byteGen:2:dFF.o_q
+Data_out[3] <= enardFF_2:byteGen:3:dFF.o_q
+Data_out[4] <= enardFF_2:byteGen:4:dFF.o_q
+Data_out[5] <= enardFF_2:byteGen:5:dFF.o_q
+Data_out[6] <= enardFF_2:byteGen:6:dFF.o_q
+Data_out[7] <= enardFF_2:byteGen:7:dFF.o_q
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:hReg|enARdFF_2:\byteGen:0:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:hReg|enARdFF_2:\byteGen:1:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:hReg|enARdFF_2:\byteGen:2:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:hReg|enARdFF_2:\byteGen:3:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:hReg|enARdFF_2:\byteGen:4:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:hReg|enARdFF_2:\byteGen:5:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:hReg|enARdFF_2:\byteGen:6:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|regfile:reg_file|Register_8bit:hReg|enARdFF_2:\byteGen:7:dFF
+i_resetBar => int_q.ACLR
+i_d => int_q.DATAIN
+i_enable => int_q.ENA
+i_clock => int_q.CLK
+o_q <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+o_qBar <= int_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|MUX2v1_8bit:Mux_ALUSrc
+sel => and_b[0].IN0
+sel => and_b[1].IN0
+sel => and_b[2].IN0
+sel => and_b[3].IN0
+sel => and_b[4].IN0
+sel => and_b[5].IN0
+sel => and_b[6].IN0
+sel => and_b[7].IN0
+sel => and_a[0].IN0
+sel => and_a[1].IN0
+sel => and_a[2].IN0
+sel => and_a[3].IN0
+sel => and_a[4].IN0
+sel => and_a[5].IN0
+sel => and_a[6].IN0
+sel => and_a[7].IN0
+a[0] => and_a[0].IN1
+a[1] => and_a[1].IN1
+a[2] => and_a[2].IN1
+a[3] => and_a[3].IN1
+a[4] => and_a[4].IN1
+a[5] => and_a[5].IN1
+a[6] => and_a[6].IN1
+a[7] => and_a[7].IN1
+b[0] => and_b[0].IN1
+b[1] => and_b[1].IN1
+b[2] => and_b[2].IN1
+b[3] => and_b[3].IN1
+b[4] => and_b[4].IN1
+b[5] => and_b[5].IN1
+b[6] => and_b[6].IN1
+b[7] => and_b[7].IN1
+z[0] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[1] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[2] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[3] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[4] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[5] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[6] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[7] <= z.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|AluControlUnit:alu_ctrl
+AluOP[0] => Operation.IN1
+AluOP[1] => Operation.IN0
+AluOP[1] => Operation.IN1
+AluOP[1] => Operation.IN0
+Funct[0] => Operation.IN0
+Funct[1] => Operation.IN1
+Funct[2] => Operation.IN1
+Funct[3] => Operation.IN1
+Funct[4] => ~NO_FANOUT~
+Funct[5] => ~NO_FANOUT~
+Operation[0] <= Operation.DB_MAX_OUTPUT_PORT_TYPE
+Operation[1] <= Operation.DB_MAX_OUTPUT_PORT_TYPE
+Operation[2] <= Operation.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst
+A[0] => and_result[0].IN0
+A[0] => or_result[0].IN0
+A[0] => AdderSubber_nBit:AdderInst.x[0]
+A[0] => SignedComparator_nBit:compInst.a[0]
+A[1] => and_result[1].IN0
+A[1] => or_result[1].IN0
+A[1] => AdderSubber_nBit:AdderInst.x[1]
+A[1] => SignedComparator_nBit:compInst.a[1]
+A[2] => and_result[2].IN0
+A[2] => or_result[2].IN0
+A[2] => AdderSubber_nBit:AdderInst.x[2]
+A[2] => SignedComparator_nBit:compInst.a[2]
+A[3] => and_result[3].IN0
+A[3] => or_result[3].IN0
+A[3] => AdderSubber_nBit:AdderInst.x[3]
+A[3] => SignedComparator_nBit:compInst.a[3]
+A[4] => and_result[4].IN0
+A[4] => or_result[4].IN0
+A[4] => AdderSubber_nBit:AdderInst.x[4]
+A[4] => SignedComparator_nBit:compInst.a[4]
+A[5] => and_result[5].IN0
+A[5] => or_result[5].IN0
+A[5] => AdderSubber_nBit:AdderInst.x[5]
+A[5] => SignedComparator_nBit:compInst.a[5]
+A[6] => and_result[6].IN0
+A[6] => or_result[6].IN0
+A[6] => AdderSubber_nBit:AdderInst.x[6]
+A[6] => SignedComparator_nBit:compInst.a[6]
+A[7] => and_result[7].IN0
+A[7] => or_result[7].IN0
+A[7] => AdderSubber_nBit:AdderInst.x[7]
+A[7] => SignedComparator_nBit:compInst.a[7]
+B[0] => and_result[0].IN1
+B[0] => or_result[0].IN1
+B[0] => AdderSubber_nBit:AdderInst.y[0]
+B[0] => SignedComparator_nBit:compInst.b[0]
+B[1] => and_result[1].IN1
+B[1] => or_result[1].IN1
+B[1] => AdderSubber_nBit:AdderInst.y[1]
+B[1] => SignedComparator_nBit:compInst.b[1]
+B[2] => and_result[2].IN1
+B[2] => or_result[2].IN1
+B[2] => AdderSubber_nBit:AdderInst.y[2]
+B[2] => SignedComparator_nBit:compInst.b[2]
+B[3] => and_result[3].IN1
+B[3] => or_result[3].IN1
+B[3] => AdderSubber_nBit:AdderInst.y[3]
+B[3] => SignedComparator_nBit:compInst.b[3]
+B[4] => and_result[4].IN1
+B[4] => or_result[4].IN1
+B[4] => AdderSubber_nBit:AdderInst.y[4]
+B[4] => SignedComparator_nBit:compInst.b[4]
+B[5] => and_result[5].IN1
+B[5] => or_result[5].IN1
+B[5] => AdderSubber_nBit:AdderInst.y[5]
+B[5] => SignedComparator_nBit:compInst.b[5]
+B[6] => and_result[6].IN1
+B[6] => or_result[6].IN1
+B[6] => AdderSubber_nBit:AdderInst.y[6]
+B[6] => SignedComparator_nBit:compInst.b[6]
+B[7] => and_result[7].IN1
+B[7] => or_result[7].IN1
+B[7] => AdderSubber_nBit:AdderInst.y[7]
+B[7] => SignedComparator_nBit:compInst.b[7]
+ALU_Sel[0] => MUX8v1:MuxInst.sel[0]
+ALU_Sel[1] => MUX8v1:MuxInst.sel[1]
+ALU_Sel[2] => AdderSubber_nBit:AdderInst.AddSubCtrl
+ALU_Sel[2] => MUX8v1:MuxInst.sel[2]
+Result[0] <= MUX8v1:MuxInst.z[0]
+Result[1] <= MUX8v1:MuxInst.z[1]
+Result[2] <= MUX8v1:MuxInst.z[2]
+Result[3] <= MUX8v1:MuxInst.z[3]
+Result[4] <= MUX8v1:MuxInst.z[4]
+Result[5] <= MUX8v1:MuxInst.z[5]
+Result[6] <= MUX8v1:MuxInst.z[6]
+Result[7] <= MUX8v1:MuxInst.z[7]
+Zero <= Zero.DB_MAX_OUTPUT_PORT_TYPE
+overflow <= AdderSubber_nBit:AdderInst.OverflowOut
+
+
+|singleCycleProc|Alu8bits:ALU_inst|AdderSubber_nBit:AdderInst
+AddSubCtrl => int_y[0].IN0
+AddSubCtrl => int_y[1].IN0
+AddSubCtrl => int_y[2].IN0
+AddSubCtrl => int_y[3].IN0
+AddSubCtrl => int_y[4].IN0
+AddSubCtrl => int_y[5].IN0
+AddSubCtrl => int_y[6].IN0
+AddSubCtrl => int_y[7].IN0
+AddSubCtrl => oneBitAdder:GEN_ADDER:0:gen_OneBitAdders.i_CarryIn
+x[0] => oneBitAdder:GEN_ADDER:0:gen_OneBitAdders.i_Xi
+x[1] => oneBitAdder:GEN_ADDER:1:gen_OneBitAdders.i_Xi
+x[2] => oneBitAdder:GEN_ADDER:2:gen_OneBitAdders.i_Xi
+x[3] => oneBitAdder:GEN_ADDER:3:gen_OneBitAdders.i_Xi
+x[4] => oneBitAdder:GEN_ADDER:4:gen_OneBitAdders.i_Xi
+x[5] => oneBitAdder:GEN_ADDER:5:gen_OneBitAdders.i_Xi
+x[6] => oneBitAdder:GEN_ADDER:6:gen_OneBitAdders.i_Xi
+x[7] => oneBitAdder:GEN_ADDER:7:gen_OneBitAdders.i_Xi
+y[0] => int_y[0].IN1
+y[1] => int_y[1].IN1
+y[2] => int_y[2].IN1
+y[3] => int_y[3].IN1
+y[4] => int_y[4].IN1
+y[5] => int_y[5].IN1
+y[6] => int_y[6].IN1
+y[7] => int_y[7].IN1
+Sum[0] <= oneBitAdder:GEN_ADDER:0:gen_OneBitAdders.o_Sum
+Sum[1] <= oneBitAdder:GEN_ADDER:1:gen_OneBitAdders.o_Sum
+Sum[2] <= oneBitAdder:GEN_ADDER:2:gen_OneBitAdders.o_Sum
+Sum[3] <= oneBitAdder:GEN_ADDER:3:gen_OneBitAdders.o_Sum
+Sum[4] <= oneBitAdder:GEN_ADDER:4:gen_OneBitAdders.o_Sum
+Sum[5] <= oneBitAdder:GEN_ADDER:5:gen_OneBitAdders.o_Sum
+Sum[6] <= oneBitAdder:GEN_ADDER:6:gen_OneBitAdders.o_Sum
+Sum[7] <= oneBitAdder:GEN_ADDER:7:gen_OneBitAdders.o_Sum
+CarryOut <= oneBitAdder:GEN_ADDER:7:gen_OneBitAdders.o_CarryOut
+OverflowOut <= OverflowOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|AdderSubber_nBit:AdderInst|oneBitAdder:\GEN_ADDER:0:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|AdderSubber_nBit:AdderInst|oneBitAdder:\GEN_ADDER:1:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|AdderSubber_nBit:AdderInst|oneBitAdder:\GEN_ADDER:2:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|AdderSubber_nBit:AdderInst|oneBitAdder:\GEN_ADDER:3:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|AdderSubber_nBit:AdderInst|oneBitAdder:\GEN_ADDER:4:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|AdderSubber_nBit:AdderInst|oneBitAdder:\GEN_ADDER:5:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|AdderSubber_nBit:AdderInst|oneBitAdder:\GEN_ADDER:6:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|AdderSubber_nBit:AdderInst|oneBitAdder:\GEN_ADDER:7:gen_OneBitAdders
+i_CarryIn => int_CarryOut3.IN0
+i_CarryIn => int_CarryOut1.IN0
+i_Xi => int_CarryOut3.IN1
+i_Xi => int_CarryOut1.IN1
+i_Yi => int_CarryOut2.IN1
+i_Yi => o_Sum.IN1
+o_Sum <= o_Sum.DB_MAX_OUTPUT_PORT_TYPE
+o_CarryOut <= o_CarryOut.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|SignedComparator_nBit:compInst
+a[0] => oneBitComparator:GEN_COMPARATORS:1:cmp0.a
+a[1] => oneBitComparator:GEN_COMPARATORS:2:cmp0.a
+a[2] => oneBitComparator:GEN_COMPARATORS:3:cmp0.a
+a[3] => oneBitComparator:GEN_COMPARATORS:4:cmp0.a
+a[4] => oneBitComparator:GEN_COMPARATORS:5:cmp0.a
+a[5] => oneBitComparator:GEN_COMPARATORS:6:cmp0.a
+a[6] => oneBitComparator:GEN_COMPARATORS:7:cmp0.a
+a[7] => o_less.IN0
+a[7] => o_greater.IN0
+a[7] => oneBitComparator:GEN_COMPARATORS:8:cmp0.a
+a[7] => o_greater.IN0
+b[0] => oneBitComparator:GEN_COMPARATORS:1:cmp0.b
+b[1] => oneBitComparator:GEN_COMPARATORS:2:cmp0.b
+b[2] => oneBitComparator:GEN_COMPARATORS:3:cmp0.b
+b[3] => oneBitComparator:GEN_COMPARATORS:4:cmp0.b
+b[4] => oneBitComparator:GEN_COMPARATORS:5:cmp0.b
+b[5] => oneBitComparator:GEN_COMPARATORS:6:cmp0.b
+b[6] => oneBitComparator:GEN_COMPARATORS:7:cmp0.b
+b[7] => o_greater.IN1
+b[7] => o_greater.IN1
+b[7] => oneBitComparator:GEN_COMPARATORS:8:cmp0.b
+b[7] => o_less.IN1
+o_equal <= oneBitComparator:GEN_COMPARATORS:1:cmp0.eq_out
+o_greater <= o_greater.DB_MAX_OUTPUT_PORT_TYPE
+o_less <= o_less.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|SignedComparator_nBit:compInst|oneBitComparator:\GEN_COMPARATORS:8:cmp0
+a => eq_out.IN0
+a => gt_out.IN0
+a => lt_out.IN0
+b => eq_out.IN1
+b => lt_out.IN1
+b => gt_out.IN1
+eq_in => eq_out.IN1
+eq_in => gt_out.IN1
+eq_in => lt_out.IN1
+gt_in => gt_out.IN1
+lt_in => lt_out.IN1
+eq_out <= eq_out.DB_MAX_OUTPUT_PORT_TYPE
+gt_out <= gt_out.DB_MAX_OUTPUT_PORT_TYPE
+lt_out <= lt_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|SignedComparator_nBit:compInst|oneBitComparator:\GEN_COMPARATORS:7:cmp0
+a => eq_out.IN0
+a => gt_out.IN0
+a => lt_out.IN0
+b => eq_out.IN1
+b => lt_out.IN1
+b => gt_out.IN1
+eq_in => eq_out.IN1
+eq_in => gt_out.IN1
+eq_in => lt_out.IN1
+gt_in => gt_out.IN1
+lt_in => lt_out.IN1
+eq_out <= eq_out.DB_MAX_OUTPUT_PORT_TYPE
+gt_out <= gt_out.DB_MAX_OUTPUT_PORT_TYPE
+lt_out <= lt_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|SignedComparator_nBit:compInst|oneBitComparator:\GEN_COMPARATORS:6:cmp0
+a => eq_out.IN0
+a => gt_out.IN0
+a => lt_out.IN0
+b => eq_out.IN1
+b => lt_out.IN1
+b => gt_out.IN1
+eq_in => eq_out.IN1
+eq_in => gt_out.IN1
+eq_in => lt_out.IN1
+gt_in => gt_out.IN1
+lt_in => lt_out.IN1
+eq_out <= eq_out.DB_MAX_OUTPUT_PORT_TYPE
+gt_out <= gt_out.DB_MAX_OUTPUT_PORT_TYPE
+lt_out <= lt_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|SignedComparator_nBit:compInst|oneBitComparator:\GEN_COMPARATORS:5:cmp0
+a => eq_out.IN0
+a => gt_out.IN0
+a => lt_out.IN0
+b => eq_out.IN1
+b => lt_out.IN1
+b => gt_out.IN1
+eq_in => eq_out.IN1
+eq_in => gt_out.IN1
+eq_in => lt_out.IN1
+gt_in => gt_out.IN1
+lt_in => lt_out.IN1
+eq_out <= eq_out.DB_MAX_OUTPUT_PORT_TYPE
+gt_out <= gt_out.DB_MAX_OUTPUT_PORT_TYPE
+lt_out <= lt_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|SignedComparator_nBit:compInst|oneBitComparator:\GEN_COMPARATORS:4:cmp0
+a => eq_out.IN0
+a => gt_out.IN0
+a => lt_out.IN0
+b => eq_out.IN1
+b => lt_out.IN1
+b => gt_out.IN1
+eq_in => eq_out.IN1
+eq_in => gt_out.IN1
+eq_in => lt_out.IN1
+gt_in => gt_out.IN1
+lt_in => lt_out.IN1
+eq_out <= eq_out.DB_MAX_OUTPUT_PORT_TYPE
+gt_out <= gt_out.DB_MAX_OUTPUT_PORT_TYPE
+lt_out <= lt_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|SignedComparator_nBit:compInst|oneBitComparator:\GEN_COMPARATORS:3:cmp0
+a => eq_out.IN0
+a => gt_out.IN0
+a => lt_out.IN0
+b => eq_out.IN1
+b => lt_out.IN1
+b => gt_out.IN1
+eq_in => eq_out.IN1
+eq_in => gt_out.IN1
+eq_in => lt_out.IN1
+gt_in => gt_out.IN1
+lt_in => lt_out.IN1
+eq_out <= eq_out.DB_MAX_OUTPUT_PORT_TYPE
+gt_out <= gt_out.DB_MAX_OUTPUT_PORT_TYPE
+lt_out <= lt_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|SignedComparator_nBit:compInst|oneBitComparator:\GEN_COMPARATORS:2:cmp0
+a => eq_out.IN0
+a => gt_out.IN0
+a => lt_out.IN0
+b => eq_out.IN1
+b => lt_out.IN1
+b => gt_out.IN1
+eq_in => eq_out.IN1
+eq_in => gt_out.IN1
+eq_in => lt_out.IN1
+gt_in => gt_out.IN1
+lt_in => lt_out.IN1
+eq_out <= eq_out.DB_MAX_OUTPUT_PORT_TYPE
+gt_out <= gt_out.DB_MAX_OUTPUT_PORT_TYPE
+lt_out <= lt_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|SignedComparator_nBit:compInst|oneBitComparator:\GEN_COMPARATORS:1:cmp0
+a => eq_out.IN0
+a => gt_out.IN0
+a => lt_out.IN0
+b => eq_out.IN1
+b => lt_out.IN1
+b => gt_out.IN1
+eq_in => eq_out.IN1
+eq_in => gt_out.IN1
+eq_in => lt_out.IN1
+gt_in => gt_out.IN1
+lt_in => lt_out.IN1
+eq_out <= eq_out.DB_MAX_OUTPUT_PORT_TYPE
+gt_out <= gt_out.DB_MAX_OUTPUT_PORT_TYPE
+lt_out <= lt_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|Alu8bits:ALU_inst|MUX8v1:MuxInst
+sel[0] => Equal0.IN0
+sel[0] => Equal1.IN2
+sel[0] => Equal2.IN1
+sel[0] => Equal3.IN2
+sel[0] => Equal4.IN1
+sel[0] => Equal5.IN2
+sel[0] => Equal6.IN2
+sel[1] => Equal0.IN2
+sel[1] => Equal1.IN0
+sel[1] => Equal2.IN0
+sel[1] => Equal3.IN1
+sel[1] => Equal4.IN2
+sel[1] => Equal5.IN1
+sel[1] => Equal6.IN1
+sel[2] => Equal0.IN1
+sel[2] => Equal1.IN1
+sel[2] => Equal2.IN2
+sel[2] => Equal3.IN0
+sel[2] => Equal4.IN0
+sel[2] => Equal5.IN0
+sel[2] => Equal6.IN0
+a[0] => z.DATAB
+a[1] => z.DATAB
+a[2] => z.DATAB
+a[3] => z.DATAB
+a[4] => z.DATAB
+a[5] => z.DATAB
+a[6] => z.DATAB
+a[7] => z.DATAB
+b[0] => z.DATAB
+b[1] => z.DATAB
+b[2] => z.DATAB
+b[3] => z.DATAB
+b[4] => z.DATAB
+b[5] => z.DATAB
+b[6] => z.DATAB
+b[7] => z.DATAB
+c[0] => z.DATAB
+c[1] => z.DATAB
+c[2] => z.DATAB
+c[3] => z.DATAB
+c[4] => z.DATAB
+c[5] => z.DATAB
+c[6] => z.DATAB
+c[7] => z.DATAB
+d[0] => z.DATAB
+d[1] => z.DATAB
+d[2] => z.DATAB
+d[3] => z.DATAB
+d[4] => z.DATAB
+d[5] => z.DATAB
+d[6] => z.DATAB
+d[7] => z.DATAB
+e[0] => z.DATAB
+e[1] => z.DATAB
+e[2] => z.DATAB
+e[3] => z.DATAB
+e[4] => z.DATAB
+e[5] => z.DATAB
+e[6] => z.DATAB
+e[7] => z.DATAB
+f[0] => z.DATAB
+f[1] => z.DATAB
+f[2] => z.DATAB
+f[3] => z.DATAB
+f[4] => z.DATAB
+f[5] => z.DATAB
+f[6] => z.DATAB
+f[7] => z.DATAB
+g[0] => z.DATAB
+g[1] => z.DATAB
+g[2] => z.DATAB
+g[3] => z.DATAB
+g[4] => z.DATAB
+g[5] => z.DATAB
+g[6] => z.DATAB
+g[7] => z.DATAB
+h[0] => z.DATAA
+h[1] => z.DATAA
+h[2] => z.DATAA
+h[3] => z.DATAA
+h[4] => z.DATAA
+h[5] => z.DATAA
+h[6] => z.DATAA
+h[7] => z.DATAA
+z[0] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[1] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[2] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[3] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[4] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[5] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[6] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[7] <= z.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|DataMemory:data_mem
+clock => altsyncram:altsyncram_component.clock0
+address[0] => altsyncram:altsyncram_component.address_a[0]
+address[1] => altsyncram:altsyncram_component.address_a[1]
+address[2] => altsyncram:altsyncram_component.address_a[2]
+address[3] => altsyncram:altsyncram_component.address_a[3]
+address[4] => altsyncram:altsyncram_component.address_a[4]
+address[5] => altsyncram:altsyncram_component.address_a[5]
+address[6] => altsyncram:altsyncram_component.address_a[6]
+address[7] => altsyncram:altsyncram_component.address_a[7]
+write_data[0] => altsyncram:altsyncram_component.data_a[0]
+write_data[1] => altsyncram:altsyncram_component.data_a[1]
+write_data[2] => altsyncram:altsyncram_component.data_a[2]
+write_data[3] => altsyncram:altsyncram_component.data_a[3]
+write_data[4] => altsyncram:altsyncram_component.data_a[4]
+write_data[5] => altsyncram:altsyncram_component.data_a[5]
+write_data[6] => altsyncram:altsyncram_component.data_a[6]
+write_data[7] => altsyncram:altsyncram_component.data_a[7]
+mem_write => altsyncram:altsyncram_component.wren_a
+mem_read => read_data.IN1
+mem_read => read_data.IN1
+mem_read => read_data.IN1
+mem_read => read_data.IN1
+mem_read => read_data.IN1
+mem_read => read_data.IN1
+mem_read => read_data.IN1
+mem_read => read_data.IN1
+read_data[0] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[1] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[2] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[3] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[4] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[5] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[6] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+read_data[7] <= read_data.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|singleCycleProc|DataMemory:data_mem|altsyncram:altsyncram_component
+wren_a => altsyncram_9jh1:auto_generated.wren_a
+rden_a => ~NO_FANOUT~
+wren_b => ~NO_FANOUT~
+rden_b => ~NO_FANOUT~
+data_a[0] => altsyncram_9jh1:auto_generated.data_a[0]
+data_a[1] => altsyncram_9jh1:auto_generated.data_a[1]
+data_a[2] => altsyncram_9jh1:auto_generated.data_a[2]
+data_a[3] => altsyncram_9jh1:auto_generated.data_a[3]
+data_a[4] => altsyncram_9jh1:auto_generated.data_a[4]
+data_a[5] => altsyncram_9jh1:auto_generated.data_a[5]
+data_a[6] => altsyncram_9jh1:auto_generated.data_a[6]
+data_a[7] => altsyncram_9jh1:auto_generated.data_a[7]
+data_b[0] => ~NO_FANOUT~
+address_a[0] => altsyncram_9jh1:auto_generated.address_a[0]
+address_a[1] => altsyncram_9jh1:auto_generated.address_a[1]
+address_a[2] => altsyncram_9jh1:auto_generated.address_a[2]
+address_a[3] => altsyncram_9jh1:auto_generated.address_a[3]
+address_a[4] => altsyncram_9jh1:auto_generated.address_a[4]
+address_a[5] => altsyncram_9jh1:auto_generated.address_a[5]
+address_a[6] => altsyncram_9jh1:auto_generated.address_a[6]
+address_a[7] => altsyncram_9jh1:auto_generated.address_a[7]
+address_b[0] => ~NO_FANOUT~
+addressstall_a => ~NO_FANOUT~
+addressstall_b => ~NO_FANOUT~
+clock0 => altsyncram_9jh1:auto_generated.clock0
+clock1 => ~NO_FANOUT~
+clocken0 => ~NO_FANOUT~
+clocken1 => ~NO_FANOUT~
+clocken2 => ~NO_FANOUT~
+clocken3 => ~NO_FANOUT~
+aclr0 => ~NO_FANOUT~
+aclr1 => ~NO_FANOUT~
+byteena_a[0] => ~NO_FANOUT~
+byteena_b[0] => ~NO_FANOUT~
+q_a[0] <= altsyncram_9jh1:auto_generated.q_a[0]
+q_a[1] <= altsyncram_9jh1:auto_generated.q_a[1]
+q_a[2] <= altsyncram_9jh1:auto_generated.q_a[2]
+q_a[3] <= altsyncram_9jh1:auto_generated.q_a[3]
+q_a[4] <= altsyncram_9jh1:auto_generated.q_a[4]
+q_a[5] <= altsyncram_9jh1:auto_generated.q_a[5]
+q_a[6] <= altsyncram_9jh1:auto_generated.q_a[6]
+q_a[7] <= altsyncram_9jh1:auto_generated.q_a[7]
+q_b[0] <= <GND>
+eccstatus[0] <= <GND>
+eccstatus[1] <= <GND>
+eccstatus[2] <= <GND>
+
+
+|singleCycleProc|DataMemory:data_mem|altsyncram:altsyncram_component|altsyncram_9jh1:auto_generated
+address_a[0] => ram_block1a0.PORTAADDR
+address_a[0] => ram_block1a1.PORTAADDR
+address_a[0] => ram_block1a2.PORTAADDR
+address_a[0] => ram_block1a3.PORTAADDR
+address_a[0] => ram_block1a4.PORTAADDR
+address_a[0] => ram_block1a5.PORTAADDR
+address_a[0] => ram_block1a6.PORTAADDR
+address_a[0] => ram_block1a7.PORTAADDR
+address_a[1] => ram_block1a0.PORTAADDR1
+address_a[1] => ram_block1a1.PORTAADDR1
+address_a[1] => ram_block1a2.PORTAADDR1
+address_a[1] => ram_block1a3.PORTAADDR1
+address_a[1] => ram_block1a4.PORTAADDR1
+address_a[1] => ram_block1a5.PORTAADDR1
+address_a[1] => ram_block1a6.PORTAADDR1
+address_a[1] => ram_block1a7.PORTAADDR1
+address_a[2] => ram_block1a0.PORTAADDR2
+address_a[2] => ram_block1a1.PORTAADDR2
+address_a[2] => ram_block1a2.PORTAADDR2
+address_a[2] => ram_block1a3.PORTAADDR2
+address_a[2] => ram_block1a4.PORTAADDR2
+address_a[2] => ram_block1a5.PORTAADDR2
+address_a[2] => ram_block1a6.PORTAADDR2
+address_a[2] => ram_block1a7.PORTAADDR2
+address_a[3] => ram_block1a0.PORTAADDR3
+address_a[3] => ram_block1a1.PORTAADDR3
+address_a[3] => ram_block1a2.PORTAADDR3
+address_a[3] => ram_block1a3.PORTAADDR3
+address_a[3] => ram_block1a4.PORTAADDR3
+address_a[3] => ram_block1a5.PORTAADDR3
+address_a[3] => ram_block1a6.PORTAADDR3
+address_a[3] => ram_block1a7.PORTAADDR3
+address_a[4] => ram_block1a0.PORTAADDR4
+address_a[4] => ram_block1a1.PORTAADDR4
+address_a[4] => ram_block1a2.PORTAADDR4
+address_a[4] => ram_block1a3.PORTAADDR4
+address_a[4] => ram_block1a4.PORTAADDR4
+address_a[4] => ram_block1a5.PORTAADDR4
+address_a[4] => ram_block1a6.PORTAADDR4
+address_a[4] => ram_block1a7.PORTAADDR4
+address_a[5] => ram_block1a0.PORTAADDR5
+address_a[5] => ram_block1a1.PORTAADDR5
+address_a[5] => ram_block1a2.PORTAADDR5
+address_a[5] => ram_block1a3.PORTAADDR5
+address_a[5] => ram_block1a4.PORTAADDR5
+address_a[5] => ram_block1a5.PORTAADDR5
+address_a[5] => ram_block1a6.PORTAADDR5
+address_a[5] => ram_block1a7.PORTAADDR5
+address_a[6] => ram_block1a0.PORTAADDR6
+address_a[6] => ram_block1a1.PORTAADDR6
+address_a[6] => ram_block1a2.PORTAADDR6
+address_a[6] => ram_block1a3.PORTAADDR6
+address_a[6] => ram_block1a4.PORTAADDR6
+address_a[6] => ram_block1a5.PORTAADDR6
+address_a[6] => ram_block1a6.PORTAADDR6
+address_a[6] => ram_block1a7.PORTAADDR6
+address_a[7] => ram_block1a0.PORTAADDR7
+address_a[7] => ram_block1a1.PORTAADDR7
+address_a[7] => ram_block1a2.PORTAADDR7
+address_a[7] => ram_block1a3.PORTAADDR7
+address_a[7] => ram_block1a4.PORTAADDR7
+address_a[7] => ram_block1a5.PORTAADDR7
+address_a[7] => ram_block1a6.PORTAADDR7
+address_a[7] => ram_block1a7.PORTAADDR7
+clock0 => ram_block1a0.CLK0
+clock0 => ram_block1a1.CLK0
+clock0 => ram_block1a2.CLK0
+clock0 => ram_block1a3.CLK0
+clock0 => ram_block1a4.CLK0
+clock0 => ram_block1a5.CLK0
+clock0 => ram_block1a6.CLK0
+clock0 => ram_block1a7.CLK0
+data_a[0] => ram_block1a0.PORTADATAIN
+data_a[1] => ram_block1a1.PORTADATAIN
+data_a[2] => ram_block1a2.PORTADATAIN
+data_a[3] => ram_block1a3.PORTADATAIN
+data_a[4] => ram_block1a4.PORTADATAIN
+data_a[5] => ram_block1a5.PORTADATAIN
+data_a[6] => ram_block1a6.PORTADATAIN
+data_a[7] => ram_block1a7.PORTADATAIN
+q_a[0] <= ram_block1a0.PORTADATAOUT
+q_a[1] <= ram_block1a1.PORTADATAOUT
+q_a[2] <= ram_block1a2.PORTADATAOUT
+q_a[3] <= ram_block1a3.PORTADATAOUT
+q_a[4] <= ram_block1a4.PORTADATAOUT
+q_a[5] <= ram_block1a5.PORTADATAOUT
+q_a[6] <= ram_block1a6.PORTADATAOUT
+q_a[7] <= ram_block1a7.PORTADATAOUT
+wren_a => ram_block1a0.PORTAWE
+wren_a => ram_block1a1.PORTAWE
+wren_a => ram_block1a2.PORTAWE
+wren_a => ram_block1a3.PORTAWE
+wren_a => ram_block1a4.PORTAWE
+wren_a => ram_block1a5.PORTAWE
+wren_a => ram_block1a6.PORTAWE
+wren_a => ram_block1a7.PORTAWE
+
+
+|singleCycleProc|MUX2v1_8bit:Mux_MemtoReg
+sel => and_b[0].IN0
+sel => and_b[1].IN0
+sel => and_b[2].IN0
+sel => and_b[3].IN0
+sel => and_b[4].IN0
+sel => and_b[5].IN0
+sel => and_b[6].IN0
+sel => and_b[7].IN0
+sel => and_a[0].IN0
+sel => and_a[1].IN0
+sel => and_a[2].IN0
+sel => and_a[3].IN0
+sel => and_a[4].IN0
+sel => and_a[5].IN0
+sel => and_a[6].IN0
+sel => and_a[7].IN0
+a[0] => and_a[0].IN1
+a[1] => and_a[1].IN1
+a[2] => and_a[2].IN1
+a[3] => and_a[3].IN1
+a[4] => and_a[4].IN1
+a[5] => and_a[5].IN1
+a[6] => and_a[6].IN1
+a[7] => and_a[7].IN1
+b[0] => and_b[0].IN1
+b[1] => and_b[1].IN1
+b[2] => and_b[2].IN1
+b[3] => and_b[3].IN1
+b[4] => and_b[4].IN1
+b[5] => and_b[5].IN1
+b[6] => and_b[6].IN1
+b[7] => and_b[7].IN1
+z[0] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[1] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[2] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[3] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[4] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[5] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[6] <= z.DB_MAX_OUTPUT_PORT_TYPE
+z[7] <= z.DB_MAX_OUTPUT_PORT_TYPE
+
+
